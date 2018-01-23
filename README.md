@@ -53,5 +53,7 @@ example
 var crosshost = 'https://easy-mock.com'
 
 ```
+# multiple Entry
+config  ./config/entry.json
 
 
