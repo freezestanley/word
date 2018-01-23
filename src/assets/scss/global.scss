@@ -277,20 +277,3 @@ body .weui-toast__content{
   -webkit-box-pack: end;
 }
 
-
-.md-field > input.md-input{
-  background: url('~@/assets/image/a_arrow.jpg') no-repeat;
-  background-position: center right;
-  background-size: rem-calc(22px);
-}
-
-
-
-div.md-field{
-  & > label {
-    top: 19px;
-  }
-  & > .md-count{
-    display: none;
-  }
-}

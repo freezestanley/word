@@ -13,5 +13,20 @@
       "vendor",
       "app"
     ]
+  },
+  {
+    "key": "share",
+    "entry": [
+      "babel-polyfill",
+      "./src/application/share/main.js"
+    ],
+    "filename": "share.html",
+    "template": "index.html",
+    "prdHtmlWebpackPlugin": "../dist/share/login.vue",
+    "chunks": [
+      "manifest",
+      "vendor",
+      "share"
+    ]
   }
 ]

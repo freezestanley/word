@@ -56,4 +56,16 @@ var crosshost = 'https://easy-mock.com'
 # multiple Entry
 config  ./config/entry.json
 
+``` bash
+Entry url: http://localhost:9100/share.html#/
+
+'/share/*': {
+  必须把scheme 添加上，并在尾部附加上一个'/'才可行
+  target: `http://localhost:9100/`,
+  pathRewrite: {
+    '^\/share(\/[a-zA-Z]+)?': '/share.html'
+  }
+}
+```
+
 
