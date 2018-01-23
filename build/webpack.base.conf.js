@@ -7,6 +7,9 @@ const vuxLoader = require('vux-loader')
 const entry = require('../config/entry')
 const argv = require('yargs').argv
 
+const HappyPack = require('happypack');
+const happyThreadPool = HappyPack.ThreadPool({ size: 5 });
+
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
@@ -44,11 +47,13 @@ let webpackConfig = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
+        // loader: 'happypack/loader?id=vue',
         options: vueLoaderConfig
       },
       {
         test: /\.js$/,
         loader: 'babel-loader',
+        // loader: 'happypack/loader?id=js',
         include: [resolve('src'), resolve('test')]
       },
       {
@@ -76,7 +81,23 @@ let webpackConfig = {
         }
       }
     ]
-  }
+  },
+  plugins: [
+    // new HappyPack({
+    //   id: 'js',
+    //   // threadPool: happyThreadPool,
+    //   threads: 1,
+    //   loaders: [ 'babel-loader' ],
+    //   verbose: true
+    // }),
+    // new HappyPack({
+    //   id: 'vue',
+    //   // threadPool: happyThreadPool,
+    //   threads: 2,
+    //   loaders: [ 'vue-loader' ],
+    //   verbose: true
+    // })
+  ]
 }
 
 
