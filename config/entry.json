@@ -1,1 +1,17 @@
-[{"key":"app","entry":["babel-polyfill","./src/application/main/main.js"],"filename":"index.html","template":"index.html","prdHtmlWebpackPlugin":"../dist/index.html","chunks":["manifest","vendor","app"]},{"key":"yuu","entry":["babel-polyfill","./src/application/yuu/main.js"],"filename":"yuu.html","template":"index.html","prdHtmlWebpackPlugin":"../dist/yuu/login.vue","chunks":["manifest","vendor","yuu"]}]
+[
+  {
+    "key": "app",
+    "entry": [
+      "babel-polyfill",
+      "./src/application/main/main.js"
+    ],
+    "filename": "index.html",
+    "template": "index.html",
+    "prdHtmlWebpackPlugin": "../dist/index.html",
+    "chunks": [
+      "manifest",
+      "vendor",
+      "app"
+    ]
+  }
+]
