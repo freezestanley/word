@@ -1,7 +1,7 @@
 
 <template>
 <div id="app">
-    welcome share
+    welcome yuu
   <router-view/>
 </div>
 </template>

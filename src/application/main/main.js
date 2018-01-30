@@ -27,7 +27,7 @@ router.beforeEach((to, from, next) => {
 let app = new Vue({
   el: '#app',
   router,
-  store,
+  // store,
   mixins: [],
   template: '<App/>',
   components: { App },
