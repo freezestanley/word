@@ -26,7 +26,10 @@ npm run e2e
 npm run createEntry target  
 
 # run mdev    run dev & mock
-npm run mdev
+npm run mdev  --local  全部接口开启为本地json
+              --cross  全部接口开启为远程接口
+              --mixin  全部接口为本地或远程混合
+
 
 # run all tests
 npm test
