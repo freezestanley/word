@@ -43,3 +43,6 @@ export const ILOGIN = root + login
 
 let demo = '/demo'
 export const IDEMO = path(demo, true)
+
+export const IIndex = path('/word/index', true)
+export const IList = path('/word/list', true)

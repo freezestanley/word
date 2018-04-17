@@ -55,6 +55,20 @@ export default new Router({
       components: {
         default: resolve => require(['@/application/main/message'], resolve)
       }
+    },
+    {
+      path: '/record',
+      name: 'index',
+      components: {
+        default: resolve => require(['@/application/main/word/index'], resolve)
+      }
+    },
+    {
+      path: '/list',
+      name: 'list',
+      components: {
+        default: resolve => require(['@/application/main/word/list'], resolve)
+      }
     }
   ]
 })

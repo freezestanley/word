@@ -1,0 +1,115 @@
+<template>
+  <div class="search-box">
+    <div class="search-sel">
+      <selector v-model="select" placeholder="或" :options="list"></selector>
+    </div>
+    <input type="text" placeholder="请输入" v-model="searchModel" class="search-input" @focus="show()" @blur="hide()">
+    <a class="search-btn">搜索</a>
+    <ul class="searched-text" v-show="showSearched" @click="clickText">
+      <li>ps文件</li>
+      <li>文件</li>
+      <li>如何导入</li>
+      <li>转换</li>
+      <li>工作</li>
+    </ul>
+  </div>
+</template>
+
+<script>
+import { Selector } from 'vux'
+export default {
+  name: 'search',
+  components: {
+    Selector
+  },
+  data () {
+    return {
+      searchModel: '',
+      select: '是',
+      list: ['是', '否'],
+      showSearched: false
+    }
+  },
+  methods: {
+    show: function () {
+      this.showSearched = true
+    },
+    hide: function () {
+      this.showSearched = false
+    },
+    clickText: function (event) {
+      let $event = event.target
+      this.searchModel = $event.innerHTML
+      this.showSearched = false
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.search-box {
+  position: relative;
+  display: flex;
+  padding: rem-calc(7 0 7 15);
+  background: #56CDF9;
+  color: #fff;
+  align-items: center;
+  .search-sel {
+    position: relative;
+    width: rem-calc(50);
+    font-size: rem-calc(18);
+  }
+  .search-input {
+    padding: rem-calc(0 10);
+    width: rem-calc(255);
+    line-height: rem-calc(40);
+    box-sizing: border-box;
+    border-radius: rem-calc(5);
+    border: 0;
+    font-size: rem-calc(18);
+  }
+  .search-btn {
+    flex: 1;
+    display: block;
+    text-align: center;
+    font-size: rem-calc(18);
+    color: #fff;
+  }
+  .searched-text {
+    position: absolute;
+    left: rem-calc(65);
+    top: rem-calc(50);
+    width: rem-calc(255);
+    background: #fff;
+    border: 1px solid #ccc;
+    li {
+      padding: 10px 15px;
+      list-style: none;
+      color: #333;
+      font-size: rem-calc(18);
+      &:not(:last-child) {
+        border-bottom: 1px solid #ccc;
+      }
+    }
+  }
+}
+</style>
+<style lang="scss">
+.search-box {
+  .weui-cell_select .weui-select {
+    padding: 0;
+    color: #fff;
+    option {
+      color: #333;
+    }
+  }
+  .weui-cell_select .weui-cell__bd:after {
+    right: rem-calc(10);
+    margin-top: rem-calc(-10);
+    width: rem-calc(10);
+    height: rem-calc(10);
+    border-color: #fff;
+    transform: rotate(135deg);
+  }
+}
+</style>
