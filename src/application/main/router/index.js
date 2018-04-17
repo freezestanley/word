@@ -1,14 +1,14 @@
 
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/Hello'
+// import HelloWorld from '@/components/Hello'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '/',
+      path: '/gallery',
       name: 'gallery',
       components: {
         default: resolve => require(['@/application/base/gallery'], resolve)
@@ -26,6 +26,34 @@ export default new Router({
       Info: {
         description: '画布',
         param: {}
+      }
+    },
+    {
+      path: '/',
+      name: 'entry',
+      components: {
+        default: resolve => require(['@/application/main/entry'], resolve)
+      }
+    },
+    {
+      path: '/user',
+      name: 'user',
+      components: {
+        default: resolve => require(['@/application/main/user'], resolve)
+      }
+    },
+    {
+      path: '/password',
+      name: 'password',
+      components: {
+        default: resolve => require(['@/application/main/user/password'], resolve)
+      }
+    },
+    {
+      path: '/message',
+      name: 'message',
+      components: {
+        default: resolve => require(['@/application/main/message'], resolve)
       }
     }
   ]
