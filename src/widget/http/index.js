@@ -78,7 +78,7 @@ export default function (app) {
       // app.$vux.loading.show({
       //   text: 'Loading'
       // })
-      // app.$loading.show()
+      app.$loading.show()
       return config
     },
     err => {
@@ -105,7 +105,7 @@ export default function (app) {
     // // 对响应数据做些事
     // app.$store.dispatch('toggleLoadingStatus', false)
     // app.$vux.loading.hide()
-    // app.$loading.hide()
+    app.$loading.hide()
     return response
   }, function (error) {
     // 请求错误时做些事
@@ -122,7 +122,7 @@ export default function (app) {
     // })
     // app.$vux.loading.hide()
     // app.$toast.show({'text': '连接超时,请稍后再试'})
-    // app.$loading.hide()
+    app.$loading.hide()
     return Promise.reject(error)
   })
 }

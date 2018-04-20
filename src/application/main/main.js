@@ -8,7 +8,14 @@ import Vuex from 'vuex'
 import vuexI18n from 'vuex-i18n'
 import {translationsFan, translationsEn} from '@/language'
 
+import loading from '@/widget/plugin/loading'
+import toast from '@/widget/plugin/toast'
+import dialog from '@/widget/plugin/dialog'
+
 Vue.use(Vuex)
+Vue.use(loading)
+Vue.use(toast)
+Vue.use(dialog)
 Vue.config.productionTip = false
 Vue.config.devtools = true
 

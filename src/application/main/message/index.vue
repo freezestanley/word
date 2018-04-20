@@ -7,16 +7,20 @@
     <ul class="list">
       <li>
         <div>姓名</div>
-        <div><input type="password" placeholder="请输入姓名" v-model="loginPassword"></div>
+        <div><input type="text" placeholder="请输入姓名"  maxlength="10" v-model="messageName"></div>
       </li>
       <li>
-        <div>电话</div>
-        <div><input type="password" placeholder="请输入电话" v-model="loginNewPassword"></div>
+        <div>手机号码</div>
+        <div><input type="text" placeholder="请输入电话" maxlength="11" v-model="messagePhone"></div>
+      </li>
+      <li>
+        <div>EMAIL</div>
+        <div><input type="text" placeholder="请输入EMAIL"  maxlength="30" v-model="messageEmail"></div>
       </li>
       <li>
         <div>留言</div>
         <div>
-          <textarea type="password" placeholder="请输入留言内容" v-model="reLoginNewPassword">
+          <textarea type="password" placeholder="请输入留言内容" v-model="messageInfo">
           </textarea>
         </div>
       </li>
@@ -25,20 +29,55 @@
   </section>
 </template>
 <script>
-import wbutton from '@/components/w_button'
+import { IMESSAGE } from '@/api'
+import wbutton from '@/components/base/w_button'
+import validate from '@/widget/validate'
 export default {
   name: 'message',
   data () {
     return {
-      loginPassword: null,
-      loginNewPassword: null,
-      reLoginNewPassword: null
+      messageName: null,
+      messagePhone: null,
+      messageEmail: null,
+      messageInfo: null
     }
   },
   mounted () {
   },
   methods: {
     clickhandler () {
+      var messageName = validate.trimStr(this.messageName)
+      var messagePhone = validate.phone(this.messagePhone)
+      var messageEmail = validate.email(this.messageEmail)
+      var messageInfo = validate.trimStr(this.messageInfo)
+      var result = ''
+      if (messageName.length >= 2) {
+        if (messagePhone) {
+          if (messageEmail) {
+            if (messageInfo.length > 10) {
+              this.axios.post(IMESSAGE, {messageName, messagePhone, messageEmail, messageInfo}).then(response => {
+                if (response.data.status == 'true') {
+                  this.$toast.show({'text': '您的留言已成功!'})
+                } else {
+                  this.$toast.show({'text': response.data.errorMsg})
+                }
+              }).catch(err => {
+                throw new Error(err)
+              })
+            } else {
+              result = '留言需大于10字'
+            }
+          } else {
+            result = '请输入正确的Email'
+          }
+        } else {
+          result = '请出入11位手机号码'
+        }
+      } else {
+        result = '请输入正确的姓名'
+      }
+      if (result)
+        this.$toast.show({'text': `${result}`})
     }
   },
   components: {
@@ -94,7 +133,8 @@ export default {
           height: rem-calc(60);
           line-height: rem-calc(20);
           vertical-align: middle;
-          margin-left: rem-calc(10);
+          padding-left: rem-calc(10);
+          width: 95%;
           font-size: rem-calc(16);
         }
       }
@@ -111,7 +151,8 @@ export default {
       font-size:rem-calc(24);
       position: absolute;
       top: rem-calc(20);
-      left: rem-calc(20)
+      left: rem-calc(20);
+      line-height: rem-calc(40);
     }
     .banner_info{
       color:#fff;

@@ -1,26 +1,26 @@
 <template>
-  <div class="list-box">
+  <div class="list-box content">
     <search></search>
-    <ul class="list">
-      <li v-for="(item, index) of list" :key="index">
-        <p>{{item.name}}</p>
-        <p>{{item.desc}}</p>
-      </li>
-    </ul>
-    <div class="floating">
-      <span></span>
-      <span></span>
+    <div class="content_scroll">
+      <ul class="list">
+        <li v-for="(item, index) of list" :key="index" @click="goarticle">
+          <p>CAS号: {{item.name}}</p>
+          <p>{{item.desc}}</p>
+        </li>
+      </ul>
     </div>
+    <menubar></menubar>
   </div>
 </template>
 
 <script>
   import { IList } from '@/api'
   import search from '@/components/search'
+  import menubar from '@/components/menu'
   export default {
     name: 'index',
     components: {
-      search
+      search, menubar
     },
     data () {
       return {
@@ -32,13 +32,16 @@
     },
     methods: {
       getData: function () {
-        this.axios.post(IList).then(response => {
+        this.axios.post(IList, {id: this.$route.query.id}).then(response => {
           if (response.data.status) {
             this.list = response.data.data
           }
         }).catch(err => {
           throw new Error(err)
         })
+      },
+      goarticle () {
+        this.$router.push({path: '/article', query: {id: 123}})
       }
     }
   }
@@ -46,12 +49,26 @@
 
 <style lang="scss" scoped>
 .list-box {
-  padding-bottom: rem-calc(50);
-  & > .list {
-    padding: rem-calc(20 18 0);
+  &.content{
+    display:flex;
+    flex-direction: column;
+    overflow: hidden;
+    width:100%;
+    height:100%;
+    .content_scroll{
+      flex:1;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+  & .list {
+    padding: rem-calc(0 15 10);
+    & > li:last-child{
+      border:none;
+    }
     li {
       position: relative;
-      padding: rem-calc(15 15 15 20);
+      padding: rem-calc(15 15 5 20);
       list-style: none;
       border-bottom: 1px solid #ccc;
       &:before {
@@ -62,7 +79,7 @@
         top: rem-calc(15);
         width: rem-calc(11);
         height: rem-calc(14);
-        background-image: url('~@/assets/images/text.png');
+        background-image: url('~@/assets/image/text.png');
         background-repeat: no-repeat;
         background-size: contain;
       }
@@ -93,10 +110,10 @@
       background-position: center;
       &:nth-child(1) {
         margin-bottom: rem-calc(10);
-        background-image: url('~@/assets/images/home.png');
+        background-image: url('~@/assets/image/home.png');
       }
       &:nth-child(2) {
-        background-image: url('~@/assets/images/user.png');
+        background-image: url('~@/assets/image/user.png');
       }
     }
   }

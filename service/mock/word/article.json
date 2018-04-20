@@ -1,0 +1,71 @@
+{
+  "data": {
+    "cas": "123123",
+    "titleCn": "线粒体",
+    "titleEn": "mitochondrion",
+    "list": [
+      {
+        "id": "a1",
+        "title": "主要功能",
+        "son": [
+          {
+            "id": "a1-1",
+            "title": "形态特征",
+            "wordCn": "我要一段英语经典片段!作业帮用户 英语 2017-10-06 优质解答 How can I ",
+            "wordEn": "vux-loader: duplicate-style start~"
+          },
+          {
+            "id": "a1-2",
+            "title": "形态特征",
+            "wordCn": "我要一段英语经典片段!作业帮用户 英语 2017-10-06 优质解答 How can I ",
+            "wordEn": "vux-loader: duplicate-style start~"
+          },
+          {
+            "id": "a1-3",
+            "title": "形态特征",
+            "wordCn": "我要一段英语经典片段!作业帮用户 英语 2017-10-06 优质解答 How can I ",
+            "wordEn": "vux-loader: duplicate-style start~"
+          },
+          {
+            "id": "a1-4",
+            "title": "形态特征",
+            "wordCn": "我要一段英语经典片段!作业帮用户 英语 2017-10-06 优质解答 How can I ",
+            "wordEn": "vux-loader: duplicate-style start~"
+          }
+        ]
+      },
+      {
+        "id": "a2",
+        "title": "主要功能",
+        "son": [
+          {
+            "id": "a2-1",
+            "title": "形态特征2",
+            "wordCn": "我要一段英语经典片段!作业帮用户 英语 2017-10-06 优质解答 How can I ",
+            "wordEn": "vux-loader: duplicate-style start~"
+          },
+          {
+            "id": "a2-2",
+            "title": "形态特征2",
+            "wordCn": "我要一段英语经典片段!作业帮用户 英语 2017-10-06 优质解答 How can I ",
+            "wordEn": "vux-loader: duplicate-style start~"
+          },
+          {
+            "id": "a2-3",
+            "title": "形态特征2",
+            "wordCn": "我要一段英语经典片段!作业帮用户 英语 2017-10-06 优质解答 How can I ",
+            "wordEn": "vux-loader: duplicate-style start~"
+          },
+          {
+            "id": "a2-4",
+            "title": "形态特征2",
+            "wordCn": "我要一段英语经典片段!作业帮用户 英语 2017-10-06 优质解答 How can I ",
+            "wordEn": "vux-loader: duplicate-style start~"
+          }
+        ]
+      }
+    ]
+  },
+  "status": "true",
+  "errorMsg": ""
+}

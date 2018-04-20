@@ -7,22 +7,24 @@
     <ul class="list">
       <li>
         <div>当前密码</div>
-        <div><input type="password" placeholder="请输入当前密码" v-model="loginPassword"></div>
+        <div><input type="password" placeholder="请输入当前密码" maxlength="16" v-model="loginPassword"></div>
       </li>
       <li>
         <div>新密码</div>
-        <div><input type="password" placeholder="请输入新密码" v-model="loginNewPassword"></div>
+        <div><input type="password" placeholder="请输入新密码" maxlength="16" v-model="loginNewPassword"></div>
       </li>
       <li>
         <div>确认新密码</div>
-        <div><input type="password" placeholder="确认新密码" v-model="reLoginNewPassword"></div>
+        <div><input type="password" placeholder="确认新密码" maxlength="16" v-model="reLoginNewPassword"></div>
       </li>
     </ul>
     <wbutton @wClick="clickhandler" class="m_rl10">提 交</wbutton>
   </section>
 </template>
 <script>
-import wbutton from '@/components/w_button'
+import { IPASSWORD } from '@/api'
+import wbutton from '@/components/base/w_button'
+import validate from '@/widget/validate'
 export default {
   name: 'password',
   data () {
@@ -36,6 +38,40 @@ export default {
   },
   methods: {
     clickhandler () {
+      var loginPassword = validate.trimStr(this.loginPassword)
+      var loginNewPassword = validate.trimStr(this.loginNewPassword)
+      var reLoginNewPassword = validate.trimStr(this.reLoginNewPassword)
+      var result
+      if (validate.password(loginPassword)) {
+        if (validate.password(loginNewPassword)) {
+          if (loginPassword != loginNewPassword) {
+            if (reLoginNewPassword != loginNewPassword) {
+              result = '新密码输入不一致'
+            } else {
+              this.axios.post(IPASSWORD, {loginPassword, loginNewPassword, reLoginNewPassword}).then(response => {
+                if (response.data.status == 'true') {
+                  this.$toast.show({'text': '密码已修改成功!'})
+                  window.setTimeout(() => {
+                    this.$router.push({path: "/user"})
+                  }, 2000)
+                } else {
+                  this.$toast.show({'text': response.data.errorMsg})
+                }
+              }).catch(err => {
+                throw new Error(err)
+              })
+            }
+          } else {
+            result = '新密码和当前密码不能一致'
+          }
+        } else {
+          result = '密码为6-16数字或字母'
+        }
+      } else {
+        result = '密码为6-16数字或字母'
+      }
+      if (result)
+        this.$toast.show({'text': `${result}`})
     }
   },
   components: {
@@ -78,8 +114,9 @@ export default {
           height: rem-calc(50);
           line-height: rem-calc(50);
           vertical-align: middle;
-          padding-left: rem-calc(10);
+          text-indent: rem-calc(10);
           font-size: rem-calc(16);
+          width:100%;
         }
       }
     }
@@ -95,7 +132,8 @@ export default {
       font-size:rem-calc(24);
       position: absolute;
       top: rem-calc(20);
-      left: rem-calc(20)
+      left: rem-calc(20);
+      line-height: rem-calc(40);
     }
     .banner_info{
       color:#fff;

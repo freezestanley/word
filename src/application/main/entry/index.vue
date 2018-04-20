@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     loginHandler () {
-      console.log()
+      this.$router.push({path: "/record"})
     }
   }
 }

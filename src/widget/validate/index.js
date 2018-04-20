@@ -16,27 +16,33 @@ pt.validate = function (value, rules) {
     return result
   }
 }
-pt.address = function (str) {
+pt.address = function (txt) {
+  var str = this.trimStr(txt)
   let reg = new RegExp(/^[A-Z0-9\(\)\-a-z\s]*[A-Z0-9\(\)\-a-z\s]$/)
   return reg.test(str)
 }
-pt.addressCN = function (str) {
+pt.addressCN = function (txt) {
+  var str = this.trimStr(txt)
   let reg = new RegExp(/^[\u4e00-\u9fa5A-Z0-9\(\)\-a-z\s]*[\u4e00-\u9fa5A-Z0-9\(\)\-a-z\s]$/)
   return reg.test(str)
 }
-pt.EmptyAndEAndBracket = function (str) {
+pt.EmptyAndEAndBracket = function (txt) {
+  var str = this.trimStr(txt)
   let reg = new RegExp(/^[A-Z0-9\(\)a-z\s]*[A-Z0-9\(\)a-z\s]$/)
   return reg.test(str)
 }
-pt.EmptyAndE = function (str) {
+pt.EmptyAndE = function (txt) {
+  var str = this.trimStr(txt)
   let reg = new RegExp(/^([A-Za-z]+\s?)*[A-Za-z]$/)
   return reg.test(str)
 }
-pt.china = function (str) {
+pt.china = function (txt) {
+  var str = this.trimStr(txt)
   let reg = new RegExp(/^[\u4e00-\u9fa5a-zA-Z\s]+$/)
   return reg.test(str)
 }
-pt.numAndE = function (str) {
+pt.numAndE = function (txt) {
+  var str = this.trimStr(txt)
   let reg = new RegExp(/^[0-9a-zA-Z\s]+$/)
   return reg.test(str)
 }
@@ -104,9 +110,10 @@ pt.length = function (str, option) {
   @params {[string]} email [邮箱地址]
   @return Booleans
 **/
-pt.email = function (email) {
+pt.email = function (txt) {
+  var str = this.trimStr(txt)
   let reg = new RegExp(/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/)
-  if (reg.test(email)) {
+  if (reg.test(str)) {
     return true
   }
   return false
@@ -116,7 +123,9 @@ pt.email = function (email) {
  * @param  {[number],[string]}  val1,val2[验证的值]
  * @return {Boolean}
  */
-pt.equal = function (val1, val2) {
+pt.equal = function (txt1, txt2) {
+  var val1 = this.trimStr(txt1)
+  var val2 = this.trimStr(txt2)
   return val1 === val2
 }
 /**
@@ -124,8 +133,9 @@ pt.equal = function (val1, val2) {
  * @param  {[string]}  phone [手机号]
  * @return {Boolean}
  */
-pt.phone = function (phone) {
-  let reg = new RegExp(/^((((0?)|((00)?))(((\s){0,2})|([-_－—\s]?)))|(([(]?)[+]?))(852)?([)]?)([-_－—\s]?)((2|3|5|6|9)?([-_－—\s]?)\d{3})(([-_－—\s]?)\d{4})$/)
+pt.phone = function (txt) {
+  var phone = this.trimStr(txt)
+  let reg = new RegExp(/^1(3|4|5|6|7|8)?\d{9}$/)
   return reg.test(phone)
 }
 /**
@@ -133,7 +143,8 @@ pt.phone = function (phone) {
  * @param  {[number]}  val [验证的值]
  * @return {Boolean}
  */
-pt.isNum = function (val) {
+pt.isNum = function (txt) {
+  var val = this.trimStr(txt)
   let reg = new RegExp(/^[0-9]*.$/)
   return reg.test(val)
 }
@@ -142,7 +153,8 @@ pt.isNum = function (val) {
  * @param  {[string]}  pwd [验证的值:数字或字母,6-16位]
  * @return {Boolean}
  */
-pt.password = function (pwd) {
+pt.password = function (txt) {
+  var pwd = this.trimStr(txt)
   // var reg = new RegExp(/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/)
   var reg = new RegExp(/^[0-9A-Za-z]{6,16}$/)
   return reg.test(pwd)
@@ -152,7 +164,8 @@ pt.password = function (pwd) {
  * @param  {[string]}  name [验证的值:数字和字母,6-20位]
  * @return {Boolean}
  */
-pt.name = function (name) {
+pt.name = function (txt) {
+  var name = this.trimStr(txt)
   var reg = new RegExp(/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$/)
   return reg.test(name)
 }

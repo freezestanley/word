@@ -34,7 +34,7 @@ function wechatSetTitle(title) {
   document.title = title;
   if(isIos()){
     var frame = document.createElement('iframe');
-    frame.src = '//static.zhongan.com/website/online/assets/images/favicon.ico';
+    // frame.src = '//static.zhongan.com/website/online/assets/images/favicon.ico';
     frame.style.display = 'none';
       document.body.appendChild(frame);
     frame.onload = ()=>{

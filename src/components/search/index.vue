@@ -3,7 +3,7 @@
     <div class="search-sel">
       <selector v-model="select" placeholder="或" :options="list"></selector>
     </div>
-    <input type="text" placeholder="请输入" v-model="searchModel" class="search-input" @focus="show()" @blur="hide()">
+    <input type="text" placeholder="请输入" v-model="searchModel" class="search-input" maxlength="200" @focus="show()" @blur="hide()">
     <a class="search-btn">搜索</a>
     <ul class="searched-text" v-show="showSearched" @click="clickText">
       <li>ps文件</li>
@@ -50,10 +50,11 @@ export default {
 .search-box {
   position: relative;
   display: flex;
-  padding: rem-calc(7 0 7 15);
+  padding: rem-calc(1 0 1 15);
   background: #56CDF9;
   color: #fff;
   align-items: center;
+  z-index: 99;
   .search-sel {
     position: relative;
     width: rem-calc(50);
@@ -66,7 +67,7 @@ export default {
     box-sizing: border-box;
     border-radius: rem-calc(5);
     border: 0;
-    font-size: rem-calc(18);
+    font-size: rem-calc(16);
   }
   .search-btn {
     flex: 1;
@@ -81,14 +82,15 @@ export default {
     top: rem-calc(50);
     width: rem-calc(255);
     background: #fff;
-    border: 1px solid #ccc;
+    border: 1px solid #efefef;
+    border-radius: rem-calc(5);
     li {
       padding: 10px 15px;
       list-style: none;
       color: #333;
       font-size: rem-calc(18);
       &:not(:last-child) {
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px dotted #efefef;
       }
     }
   }

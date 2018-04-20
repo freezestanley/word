@@ -15,7 +15,7 @@
   </section>
 </template>
 <script>
-import wbutton from '@/components/w_button'
+import wbutton from '@/components/base/w_button'
 export default {
   name: 'user_center',
   data () {
@@ -58,7 +58,8 @@ export default {
       font-size:rem-calc(24);
       position: absolute;
       top: rem-calc(20);
-      left: rem-calc(20)
+      left: rem-calc(20);
+      line-height: rem-calc(40);
     }
     .banner_info{
       color:#fff;

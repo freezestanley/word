@@ -60,14 +60,21 @@ export default new Router({
       path: '/record',
       name: 'index',
       components: {
-        default: resolve => require(['@/application/main/word/index'], resolve)
+        default: resolve => require(['@/application/main/record'], resolve)
       }
     },
     {
       path: '/list',
       name: 'list',
       components: {
-        default: resolve => require(['@/application/main/word/list'], resolve)
+        default: resolve => require(['@/application/main/list'], resolve)
+      }
+    },
+    {
+      path: '/article',
+      name: 'article',
+      components: {
+        default: resolve => require(['@/application/main/article'], resolve)
       }
     }
   ]

@@ -44,5 +44,8 @@ export const ILOGIN = root + login
 let demo = '/demo'
 export const IDEMO = path(demo, true)
 
-export const IIndex = path('/word/index', true)
+export const IRECORD = path('/word/record', true)
 export const IList = path('/word/list', true)
+export const IMESSAGE = path('/word/message', true)
+export const IPASSWORD = path('/word/password', true)
+export const IARTICLE = path('/word/article', true)

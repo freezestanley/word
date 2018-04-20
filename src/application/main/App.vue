@@ -22,7 +22,7 @@ html,body{
 font-family: SourceSansPro-Bold, 'Avenir', Helvetica, Arial, sans-serif, PingFangSC-Regular;
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
-font-weight: lighter;
+/* font-weight: lighter; */
 }
 </style>
 <style lang="scss" scoped>
