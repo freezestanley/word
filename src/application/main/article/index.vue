@@ -50,6 +50,12 @@ export default {
   },
   methods: {
     getData () {
+      // this.axios.post('http://192.168.26.80:3000/home').then(res => {
+      //   console.log(res)
+      // }).catch(err => {
+      //   console.log(err)
+      //   throw new Error(err)
+      // })
       this.axios.post(IARTICLE, {id: this.$route.query.id}).then(response => {
         if (response.data.status == 'true') {
           this.list = response.data.data.list
