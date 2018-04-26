@@ -22,6 +22,7 @@
   </section>
 </template>
 <script>
+import { ILOGIN } from '@/api'
 export default {
   name: 'login',
   data () {
@@ -40,7 +41,16 @@ export default {
   },
   methods: {
     loginHandler () {
-      this.$router.push({path: "/record"})
+      this.axios.post(ILOGIN, {id: this.$route.query.id}).then(response => {
+        if (response.data.status) {
+          this.$store.dispatch('userlogin', true)
+          this.$router.push({path: '/record'})
+        } else {
+          this.$toast.show({'text': `${response.data.errorMsg}`})
+        }
+      }).catch(err => {
+        throw new Error(err)
+      })
     }
   }
 }

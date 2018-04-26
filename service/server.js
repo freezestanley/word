@@ -10,7 +10,8 @@ var log4js = require('./logger')
 var fs = require('fs')
 let port = require('../service/config').dev.port
 // var crosshost = '192.168.26.49:8080'
-var crosshost = '101.132.188.218:8080'
+var crosshost = 'http://www.doutu66.com'
+// var crosshost = '101.132.188.218:8080'
 //'192.168.26.49:8080'
 //'192.168.26.105:8080'
 // '101.132.188.218:8080'

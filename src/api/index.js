@@ -43,9 +43,22 @@ export const ILOGIN = root + login
 
 let demo = '/demo'
 export const IDEMO = path(demo, true)
-
+export const ILOGIN = path('/scdc/user/login')
 export const IRECORD = path('/word/record', true)
-export const IList = path('/word/list', true)
-export const IMESSAGE = path('/word/message', true)
-export const IPASSWORD = path('/word/password', true)
-export const IARTICLE = path('/word/article', true)
+// export const IList = path('/word/list', true)
+// export const IMESSAGE = path('/word/message', true)
+// export const IPASSWORD = path('/word/password', true)
+// export const IARTICLE = path('/word/article', true)
+// ---------------------------------------
+export const ILOGOUT = path('/scdc/user/logout')
+export const ILIST = path('/scdc/content/list') // 毒物列表
+export const IARTICLE = path('/scdc/content/detail')
+export const ICATEGORY = path('/scdc/content/category')
+export const IBANNER = path('/scdc/banner')
+export const IPASSWORD = path('/scdc/user/update')
+export const IUSERNAME = path('/scdc/user/current')
+export const IMESSAGE = path('/scdc/comment/add')
+export const IWRITEMESSAGE = path('/scdc/content/list') // 毒物列表
+export const IADDISCUSS = path('/scdc/comment/add')
+export const ISEARCH = path('/scdc/content/search')
+export const ISEARCHLOG = path('/scdc/user/searchlog')

@@ -6,21 +6,26 @@
     </div>
     <div class="line_block">
       <div class="line_title">用 户 名</div>
-      <div class="line_info">Johathan Gorden</div>
+      <div class="line_info">{{username}}</div>
     </div>
     <div class="line_block">
       <div class="line_button" @click="jump">修改密码</div>
     </div>
-    <wbutton @wClick="clickhandler" class="m_rl10">提 交</wbutton>
+    <wbutton @wClick="clickhandler" class="m_rl10">退 出</wbutton>
   </section>
 </template>
 <script>
+import { ILOGOUT, IUSERNAME } from '@/api'
 import wbutton from '@/components/base/w_button'
 export default {
   name: 'user_center',
   data () {
     return {
+      username: ' '
     }
+  },
+  created () {
+    this.init()
   },
   mounted () {
   },
@@ -28,8 +33,28 @@ export default {
     wbutton
   },
   methods: {
+    init () {
+      this.axios.get(IUSERNAME).then(response => {
+        if (response.data.status) {
+          this.username = response.data.data.username
+        } else {
+          this.$toast.show({'text': `${response.data.errorMsg}`})
+        }
+      }).catch(err => {
+        throw new Error(err)
+      })
+    },
     clickhandler () {
-      console.log('fffff')
+      this.axios.post(ILOGOUT).then(response => {
+        if (response.data.status) {
+          this.$store.dispatch('userlogin', false)
+          this.$router.push({path: '/'})
+        } else {
+          this.$toast.show({'text': `${response.data.errorMsg}`})
+        }
+      }).catch(err => {
+        throw new Error(err)
+      })
     },
     jump () {
       this.$router.push({path: "/password"})

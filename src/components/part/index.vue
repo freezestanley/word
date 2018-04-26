@@ -3,10 +3,10 @@
     <h3>{{title}}</h3>
     <div v-for="(team, idx) of son" :key="idx" class="part_txt">
       <partce 
-      :wordCn = "team.wordCn" 
-      :wordEn = "team.wordEn" 
-      :title = "team.title"
-      :id = "team.id">
+      :wordCn = "team.contentCn" 
+      :wordEn = "team.contentEn" 
+      :title = "team.tag"
+      :id = "'a' + team.id">
       </partce>
     </div>
   </div>

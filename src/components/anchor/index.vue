@@ -9,7 +9,7 @@
       </ul>
       <ul class="anchor_block" v-show="status">
         <li  v-for="(team, idx) of child" :key="idx">
-          <div @click="chooseAnchor(team.id)">{{idx}}.{{team.title}}</div>
+          <div @click="chooseAnchor(team.id)">{{idx}}.{{team.tag}}</div>
         </li>
       </ul>
     </div>
@@ -57,7 +57,7 @@
           this.$parent.$el.style.height = ''
           this.$parent.$el.style.overflow = 'inherit'
         }
-        this.$emit('Anchor', id)
+        this.$emit('Anchor', 'a' + id)
       }
     }
   }

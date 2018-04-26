@@ -4,6 +4,7 @@ import * as types from './mutation-types'
 import axios from 'axios'
 
 import ui from './modules/ui'
+import user from './modules/user'
 
 Vue.use(Vuex)
 
@@ -14,7 +15,7 @@ const store = new Vuex.Store({
     publicDictionary: ''
   },
   modules: {
-    ui
+    ui, user
   },
   actions: {
     getStore ({ commit, state }, bool) {

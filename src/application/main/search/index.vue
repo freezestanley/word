@@ -1,6 +1,6 @@
 <template>
   <div class="list-box content">
-    <search @searchEvent="searchEvent"></search>
+    <search @SearchEvent="searchEvent"></search>
     <div class="content_scroll">
       <ul class="list">
         <li v-for="(item, index) of list" :key="index" @click="goarticle(item.id)">
@@ -14,11 +14,10 @@
 </template>
 
 <script>
-  import { ILIST } from '@/api'
   import search from '@/components/search'
   import menubar from '@/components/menu'
   export default {
-    name: 'index',
+    name: 'searchresult',
     components: {
       search, menubar
     },
@@ -32,7 +31,7 @@
     },
     methods: {
       getData: function () {
-        this.axios.post(ILIST, {id: this.$route.query.category}).then(response => {
+        this.axios.get(`http://www.doutu66.com/scdc/content/list?keyword=${this.$route.query.key}&queryType=${this.$route.query.type}`).then(response => {
           if (response.data.status) {
             this.list = response.data.data
           } else {
@@ -46,7 +45,15 @@
         this.$router.push({path: '/article', query: {id}})
       },
       searchEvent (obj) {
-        this.$router.push({path: '/search', query: {type: obj.type, key: obj.key}})
+        this.axios.get(`http://www.doutu66.com/scdc/content/list?keyword=${obj.key}&queryType=${obj.type}`).then(response => {
+          if (response.data.status) {
+            this.list = response.data.data
+          } else {
+            this.$toast.show({'text': `${response.data.errorMsg}`})
+          }
+        }).catch(err => {
+          throw new Error(err)
+        })
       }
     }
   }

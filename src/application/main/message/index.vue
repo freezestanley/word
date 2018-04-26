@@ -55,8 +55,8 @@ export default {
         if (messagePhone) {
           if (messageEmail) {
             if (messageInfo.length > 10) {
-              this.axios.post(IMESSAGE, {messageName, messagePhone, messageEmail, messageInfo}).then(response => {
-                if (response.data.status == 'true') {
+              this.axios.post(IMESSAGE, {posionId: 999999, realname: messageName, phone: messagePhone, email: messageEmail, coment: messageInfo}).then(response => {
+                if (response.data.status) {
                   this.$toast.show({'text': '您的留言已成功!'})
                 } else {
                   this.$toast.show({'text': response.data.errorMsg})

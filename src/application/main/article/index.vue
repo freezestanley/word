@@ -3,7 +3,7 @@
     <h2 class="article_title">{{titleCn}}</h2>
     <div @click="uphandler" class="uptop"></div>
     <div class="article_code">
-      <img src="~@/assets/image/banner.png" class="banner">
+      <img :src="imgurl" class="banner">
       <table>
         <tr>
           <td>CAS:</td><td>{{cas}}</td>
@@ -24,17 +24,30 @@
         ></part>
       </li>
     </ul>
+    <div class="disscus">
+      <div class="disscusTitle">评论</div>
+      <textarea class="m_rl10" placeholder="请输入您的评论" v-model="discussTxt"></textarea>
+      <wbutton @wClick="publishDisscus" class="m_rl10">发表评论</wbutton>
+    </div>
+    <ul>
+      <li v-for="(item, index) of message" :key="index">
+        <msg :title="item.usernick" :des="item.comment"></msg>
+      </li>
+    </ul>
     <anchor :record="list" @Anchor="anchorHandler"></anchor>
   </section> 
 </template>
 <script>
-import { IARTICLE } from '@/api'
+import { IARTICLE, IWRITEMESSAGE, IADDISCUSS, ISEARCH } from '@/api'
 import anchor from '@/components/anchor'
 import part from '@/components/part'
+import wbutton from '@/components/base/w_button'
+import msg from '@/components/part/message'
+
 export default {
   name: 'article',
   components: {
-    anchor, part
+    anchor, part, wbutton, msg
   },
   data () {
     return {
@@ -42,7 +55,14 @@ export default {
       list: [],
       cas: null,
       titleCn: null,
-      titleEn: null
+      titleEn: null,
+      discussTxt: '',
+      message: [
+        {title: '123123', des: 'asdfasdf'},
+        {title: '123123', des: 'asdfasdf'},
+        {title: '123123', des: 'asdfasdf'}
+      ],
+      imgurl: ''
     }
   },
   created () {
@@ -56,13 +76,37 @@ export default {
       //   console.log(err)
       //   throw new Error(err)
       // })
-      this.axios.post(IARTICLE, {id: this.$route.query.id}).then(response => {
-        if (response.data.status == 'true') {
+      // console.log(IARTICLE) // 'http://www.doutu66.com/scdc/content/detail?id=1
+      this.axios.get(`http://www.doutu66.com/scdc/content/detail?posionId=${this.$route.query.id}`).then(response => {
+        if (response.data.status) {
           this.list = response.data.data.list
-          console.log(this.list)
           this.cas = response.data.data.cas
           this.titleCn = response.data.data.titleCn
           this.titleEn = response.data.data.titleEn
+          this.imgurl = response.data.data.imgUrl
+        } else {
+          this.$toast.show({'text': `${response.data.errorMsg}`})
+        }
+      }).catch(err => {
+        throw new Error(err)
+      })
+      this.axios.get(`http://www.doutu66.com/scdc/comment/list?posionId=${this.$route.query.id}`, {posionId: this.$route.query.id}).then(response => {
+        debugger
+        if (response.data.status) {
+          this.message = response.data.data
+        } else {
+          this.$toast.show({'text': `${response.data.errorMsg}`})
+        }
+      }).catch(err => {
+        throw new Error(err)
+      })
+    },
+    publishDisscus () {
+      this.axios.post(IADDISCUSS, {posionId: this.$route.query.id, comment: this.discussTxt}).then(response => {
+        if (response.data.status) {
+          this.$toast.show({'text': `评论成功,正在审核`})
+        } else {
+          this.$toast.show({'text': `${response.data.errorMsg}`})
         }
       }).catch(err => {
         throw new Error(err)
@@ -129,6 +173,20 @@ export default {
         padding-left: rem-calc(10);
         vertical-align: text-top;
       }
+    }
+  }
+  .disscus{
+    margin: rem-calc(10);
+    .disscusTitle{
+      font-size: rem-calc(16);
+      margin-bottom: rem-calc(10);
+    }
+    & > textarea{
+      border-radius: rem-calc(5);
+      background:#efefef;
+      width:96%;
+      padding:2%;
+      height: rem-calc(80);
     }
   }
 }

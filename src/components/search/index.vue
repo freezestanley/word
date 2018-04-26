@@ -4,18 +4,17 @@
       <selector v-model="select" placeholder="或" :options="list"></selector>
     </div>
     <input type="text" placeholder="请输入" v-model="searchModel" class="search-input" maxlength="200" @focus="show()" @blur="hide()">
-    <a class="search-btn">搜索</a>
+    <a class="search-btn" @click="searchHandler">搜索</a>
     <ul class="searched-text" v-show="showSearched" @click="clickText">
-      <li>ps文件</li>
-      <li>文件</li>
-      <li>如何导入</li>
-      <li>转换</li>
-      <li>工作</li>
+      <li v-for="(item, index) of record" :key="index">
+        {{item.keyword}}
+      </li>
     </ul>
   </div>
 </template>
 
 <script>
+import { ISEARCH, ISEARCHLOG } from '@/api'
 import { Selector } from 'vux'
 export default {
   name: 'search',
@@ -25,14 +24,25 @@ export default {
   data () {
     return {
       searchModel: '',
-      select: '是',
-      list: ['是', '否'],
-      showSearched: false
+      select: '与',
+      list: ['与', '或'],
+      showSearched: false,
+      record: [],
+      relative: 'AND'
     }
   },
   methods: {
     show: function () {
       this.showSearched = true
+      this.axios.post(ISEARCHLOG).then(response => {
+        if (response.data.status) {
+          this.record = response.data.data
+        } else {
+          this.$toast.show({'text': `${response.data.errorMsg}`})
+        }
+      }).catch(err => {
+        throw new Error(err)
+      })
     },
     hide: function () {
       this.showSearched = false
@@ -41,6 +51,11 @@ export default {
       let $event = event.target
       this.searchModel = $event.innerHTML
       this.showSearched = false
+      this.relative = this.searchModel == '与' ? 'AND' : 'OR'
+    },
+    searchHandler () {
+      // this.$router.push({path: '/search', query: {type: this.relative, key: this.searchModel}})
+      this.$emit('SearchEvent', {type: this.relative, key: this.searchModel})
     }
   }
 }

@@ -48,7 +48,7 @@ export default {
             if (reLoginNewPassword != loginNewPassword) {
               result = '新密码输入不一致'
             } else {
-              this.axios.post(IPASSWORD, {loginPassword, loginNewPassword, reLoginNewPassword}).then(response => {
+              this.axios.post(IPASSWORD, {passwordOld: loginPassword, passwordNew: loginNewPassword}).then(response => {
                 if (response.data.status == 'true') {
                   this.$toast.show({'text': '密码已修改成功!'})
                   window.setTimeout(() => {

@@ -50,6 +50,13 @@ export default new Router({
       }
     },
     {
+      path: '/search',
+      name: 'search',
+      components: {
+        default: resolve => require(['@/application/main/search'], resolve)
+      }
+    },
+    {
       path: '/message',
       name: 'message',
       components: {

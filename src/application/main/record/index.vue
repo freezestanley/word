@@ -1,14 +1,14 @@
 <template>
   <div class="index content">
     <div class="content_fix">
-      <search></search>
+      <search @SearchEvent="searchEvent"></search>
     </div>
-    <img src="~@/assets/image/banner.png" class="banner">
+    <img :src="banner" class="banner">
     <div class="content_scroll">
       <ul class="list">
-        <li v-for="(item, index) of list" :key="index" @click="clickHandler(item.id)">
-          <p>{{item.name}}</p>
-          <p>{{item.desc}}</p>
+        <li v-for="(item, index) of list" :key="index" @click="clickHandler(item.categoryEn)">
+          <p>{{item.category}}</p>
+          <p>{{item.categoryDesc}}</p>
         </li>
       </ul>
     </div>
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { IRECORD } from '@/api'
+import { ICATEGORY, IBANNER } from '@/api'
 import search from '@/components/search'
 import menubar from '@/components/menu'
 export default {
@@ -27,24 +27,38 @@ export default {
   },
   data () {
     return {
-      list: []
+      list: [],
+      banner: '/static/img/banner.png'
     }
   },
   created: function () {
     this.getData()
+    this.getBanner()
   },
   methods: {
     clickHandler (id) {
-      this.$router.push({path: "/list", query: {id}})
+      this.$router.push({path: "/list", query: {category: id}})
     },
     getData: function () {
-      this.axios.post(IRECORD).then(response => {
+      this.axios.post(ICATEGORY).then(response => {
         if (response.data.status) {
           this.list = response.data.data
         }
       }).catch(err => {
         throw new Error(err)
       })
+    },
+    getBanner () {
+      this.axios.post(IBANNER).then(response => {
+        if (response.data.status) {
+          this.banner = response.data.data[0].base64Pict
+        }
+      }).catch(err => {
+        throw new Error(err)
+      })
+    },
+    searchEvent (obj) {
+      this.$router.push({path: '/search', query: {type: obj.type, key: obj.key}})
     }
   }
 }
@@ -66,6 +80,7 @@ export default {
   }
   & .banner {
     width: 100%;
+    min-height: rem-calc(192);
   }
   & .list {
     padding: rem-calc(0 15);

@@ -1,0 +1,6 @@
+export const USER_LOGIN = 'USER_LOGIN'
+export const PRESSSTATUS = 'PRESS_STATUS'
+export const LOADING_HIDE = 'LOADING_HIDE'
+export const LOADING_SHOW = 'LOADING_SHOW'
+export const LOADIND_STORE = 'LOADIND_STORE'
+export const SET_STORE = 'SET_STORE'

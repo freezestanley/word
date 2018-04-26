@@ -20,8 +20,8 @@ Vue.config.productionTip = false
 Vue.config.devtools = true
 
 // 点击延迟
-const FastClick = require('fastclick')
-FastClick.attach(document.documentElement)
+// const FastClick = require('fastclick')
+// FastClick.attach(document.documentElement)
 
 Vue.use(vuexI18n.plugin, store)
 Vue.i18n.add('FAN', translationsFan)
@@ -35,7 +35,7 @@ router.beforeEach((to, from, next) => {
 let app = new Vue({
   el: '#app',
   router,
-  // store,
+  store,
   mixins: [],
   template: '<App/>',
   components: { App },
