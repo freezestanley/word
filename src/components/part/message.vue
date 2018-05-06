@@ -1,6 +1,10 @@
 <template>
   <div class="message">
     <div class="title">{{title}}</div>
+    <div class="reply" v-if="replycomment">
+      <div class="replycomment">{{replycomment}}</div>
+      <div class="replynick">{{replynick}}</div>
+    </div>
     <p class="txt">{{des}}</p>
   </div>
 </template>
@@ -12,7 +16,7 @@ export default {
       status: false
     }
   },
-  props: ['title', 'des'],
+  props: ['title', 'des', 'replycomment', 'replynick'],
   methods: {
   }
 }
@@ -21,6 +25,21 @@ export default {
 .message{
   margin: rem-calc(10);
   border-bottom: 1px dotted #ccc;
+  .reply{
+    background: #eee;
+    border:1px solid #ccc;
+    border-radius: rem-calc(5);
+    margin: rem-calc(10px 0 10px 20px);
+    padding: rem-calc(10px);
+    .replycomment{
+      font-size:rem-calc(16);
+      font-weight: normal;
+      color: #333;
+    }
+    .replynick{
+      text-align: right;
+    }
+  }
   .title{
     color:#333;
     font-size:rem-calc(16);

@@ -31,7 +31,7 @@
     </div>
     <ul>
       <li v-for="(item, index) of message" :key="index">
-        <msg :title="item.usernick" :des="item.comment"></msg>
+        <msg :title="item.usernick" :des="item.comment" :replynick="item.replyuser" :replycomment="item.replycomment"></msg>
       </li>
     </ul>
     <anchor :record="list" @Anchor="anchorHandler"></anchor>
@@ -91,7 +91,6 @@ export default {
         throw new Error(err)
       })
       this.axios.get(`http://www.doutu66.com/scdc/comment/list?posionId=${this.$route.query.id}`, {posionId: this.$route.query.id}).then(response => {
-        debugger
         if (response.data.status) {
           this.message = response.data.data
         } else {

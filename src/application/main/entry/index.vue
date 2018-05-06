@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     loginHandler () {
-      this.axios.post(ILOGIN, {id: this.$route.query.id}).then(response => {
+      this.axios.post(ILOGIN, {username: this.loginName, password: this.loginPassword}).then(response => {
         if (response.data.status) {
           this.$store.dispatch('userlogin', true)
           this.$router.push({path: '/record'})
