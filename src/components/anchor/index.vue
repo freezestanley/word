@@ -9,7 +9,7 @@
       </ul>
       <ul class="anchor_block" v-show="status">
         <li  v-for="(team, idx) of child" :key="idx">
-          <div @click="chooseAnchor(team.id)">{{idx}}.{{team.tag}}</div>
+          <div @click="chooseAnchor(team.id)">{{idx}}.{{team.titleCn}}</div>
         </li>
       </ul>
     </div>
