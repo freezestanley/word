@@ -1,6 +1,6 @@
 <template>
   <div class="list-box content">
-    <search @searchEvent="searchEvent"></search>
+    <search @SearchEvent="searchEvent"></search>
     <div class="content_scroll">
       <ul class="list">
         <li v-for="(item, index) of list" :key="index" @click="goarticle(item.id)">
@@ -46,6 +46,7 @@
         this.$router.push({path: '/article', query: {id}})
       },
       searchEvent (obj) {
+        debugger
         this.$router.push({path: '/search', query: {type: obj.type, key: obj.key}})
       }
     }

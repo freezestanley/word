@@ -8,7 +8,7 @@
       {{wordEn}}
     </p>
     <div class="toggleButton"  @click="toggleHandle">
-      <div>English</div>
+      <div>查看原文</div>
     </div>
   </div>
 </template>

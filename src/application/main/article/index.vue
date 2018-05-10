@@ -8,9 +8,9 @@
         <tr>
           <td>CAS:</td><td>{{cas}}</td>
         </tr>
-        <tr>
+        <!-- <tr>
           <td>name:</td><td>{{titleEn}}</td>
-        </tr>
+        </tr> -->
         <tr>
           <td>名称:</td><td>{{titleCn}}</td>
         </tr>
@@ -19,7 +19,7 @@
     <ul>
       <li v-for="(team, idx) of list" :key="idx">
         <part 
-        :title = "team.title"
+        :title = "team.titleCn"
         :son = "team.son"
         ></part>
       </li>
@@ -103,7 +103,8 @@ export default {
     publishDisscus () {
       this.axios.post(IADDISCUSS, {posionId: this.$route.query.id, comment: this.discussTxt}).then(response => {
         if (response.data.status) {
-          this.$toast.show({'text': `评论成功,正在审核`})
+          this.$toast.show({'text': `评论成功`})
+          this.message = response.data.data
         } else {
           this.$toast.show({'text': `${response.data.errorMsg}`})
         }

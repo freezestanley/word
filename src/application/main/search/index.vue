@@ -31,7 +31,7 @@
     },
     methods: {
       getData: function () {
-        this.axios.get(`http://www.doutu66.com/scdc/content/list?keyword=${this.$route.query.key}&queryType=${this.$route.query.type}`).then(response => {
+        this.axios.get(`http://www.doutu66.com/scdc/content/search?keyword=${this.$route.query.key}&queryType=${this.$route.query.type}`).then(response => {
           if (response.data.status) {
             this.list = response.data.data
           } else {
@@ -45,8 +45,9 @@
         this.$router.push({path: '/article', query: {id}})
       },
       searchEvent (obj) {
-        this.axios.get(`http://www.doutu66.com/scdc/content/list?keyword=${obj.key}&queryType=${obj.type}`).then(response => {
+        this.axios.get(`http://www.doutu66.com/scdc/content/search?keyword=${obj.key}&queryType=${obj.type}`).then(response => {
           if (response.data.status) {
+            debugger
             this.list = response.data.data
           } else {
             this.$toast.show({'text': `${response.data.errorMsg}`})

@@ -80,7 +80,8 @@ export default {
   }
   & .banner {
     width: 100%;
-    min-height: rem-calc(192);
+    height: rem-calc(192);
+    overflow: hidden;
   }
   & .list {
     padding: rem-calc(0 15);
