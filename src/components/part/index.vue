@@ -5,7 +5,7 @@
       <partce 
       :wordCn = "team.contentCn" 
       :wordEn = "team.contentEn" 
-      :title = "team.tag"
+      :title = "team.titleCn"
       :id = "'a' + team.id">
       </partce>
     </div>
