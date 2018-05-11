@@ -19,7 +19,7 @@
     <ul>
       <li v-for="(team, idx) of list" :key="idx">
         <part 
-        :title = "team.titleCn"
+        :title = "team.title"
         :son = "team.son"
         ></part>
       </li>
@@ -155,7 +155,7 @@ export default {
     margin: rem-calc(0 10);
     height: rem-calc(80);
     .banner{
-      width: 45%;
+      width: 200px;
       float: right;
       max-height: rem-calc(80);
     }
