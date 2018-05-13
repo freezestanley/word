@@ -1,5 +1,9 @@
 <template>
   <section class="article" id="article">
+    <bar>
+      <span slot="left" @click="goback">返回</span>
+      <span>{{titleCn}}</span>
+    </bar>
     <h2 class="article_title">{{titleCn}}</h2>
     <div @click="uphandler" class="uptop"></div>
     <div class="article_code">
@@ -41,13 +45,14 @@
 import { IARTICLE, IWRITEMESSAGE, IADDISCUSS, ISEARCH } from '@/api'
 import anchor from '@/components/anchor'
 import part from '@/components/part'
+import bar from '@/components/bar'
 import wbutton from '@/components/base/w_button'
 import msg from '@/components/part/message'
 
 export default {
   name: 'article',
   components: {
-    anchor, part, wbutton, msg
+    anchor, part, wbutton, msg, bar
   },
   data () {
     return {
@@ -69,6 +74,9 @@ export default {
     this.getData()
   },
   methods: {
+    goback () {
+      this.$router.push({path: '/list'})
+    },
     getData () {
       // this.axios.post('http://192.168.26.80:3000/home').then(res => {
       //   console.log(res)

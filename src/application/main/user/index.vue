@@ -1,5 +1,9 @@
 <template>
   <section class="user_center">
+    <bar>
+      <span slot="left" @click="goback">返回</span>
+      <span>我的</span>
+    </bar>
     <div class="banner">
       <div class="banner_title">S C D C<br/>毒物数据库</div>
       <div class="banner_info">User Center</div>
@@ -17,6 +21,7 @@
 <script>
 import { ILOGOUT, IUSERNAME } from '@/api'
 import wbutton from '@/components/base/w_button'
+import bar from '@/components/bar'
 export default {
   name: 'user_center',
   data () {
@@ -30,9 +35,12 @@ export default {
   mounted () {
   },
   components: {
-    wbutton
+    wbutton, bar
   },
   methods: {
+    goback () {
+      this.$router.push({path: '/record'})
+    },
     init () {
       this.axios.get(IUSERNAME).then(response => {
         if (response.data.status) {

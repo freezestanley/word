@@ -1,5 +1,9 @@
 <template>
   <section class="message">
+    <bar>
+      <span slot="left" @click="goback">返回</span>
+      <span>联系客服</span>
+    </bar>
     <div class="banner">
       <div class="banner_title">S C D C<br/>毒物数据库</div>
       <div class="banner_info">Contact Us</div>
@@ -31,6 +35,7 @@
 <script>
 import { IMESSAGE } from '@/api'
 import wbutton from '@/components/base/w_button'
+import bar from '@/components/bar'
 import validate from '@/widget/validate'
 export default {
   name: 'message',
@@ -45,6 +50,9 @@ export default {
   mounted () {
   },
   methods: {
+    goback () {
+      this.$router.push({path: '/'})
+    },
     clickhandler () {
       var messageName = validate.trimStr(this.messageName)
       var messagePhone = validate.phone(this.messagePhone)
@@ -81,7 +89,7 @@ export default {
     }
   },
   components: {
-    wbutton
+    wbutton, bar
   },
   props: ['wbutton']
 }

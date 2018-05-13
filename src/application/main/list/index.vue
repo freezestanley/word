@@ -16,11 +16,12 @@
 <script>
   import { ILIST } from '@/api'
   import search from '@/components/search'
+  import bar from '@/components/bar'
   import menubar from '@/components/menu'
   export default {
     name: 'index',
     components: {
-      search, menubar
+      search, menubar, bar
     },
     data () {
       return {

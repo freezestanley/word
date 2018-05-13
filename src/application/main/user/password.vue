@@ -1,5 +1,9 @@
 <template>
   <section class="password">
+    <bar>
+      <span slot="left" @click="goback">返回</span>
+      <span>修改密码</span>
+    </bar>
     <div class="banner">
       <div class="banner_title">S C D C<br/>毒物数据库</div>
       <div class="banner_info">PassWord</div>
@@ -24,6 +28,7 @@
 <script>
 import { IPASSWORD } from '@/api'
 import wbutton from '@/components/base/w_button'
+import bar from '@/components/bar'
 import validate from '@/widget/validate'
 export default {
   name: 'password',
@@ -37,6 +42,9 @@ export default {
   mounted () {
   },
   methods: {
+    goback () {
+      this.$router.push({path: '/user'})
+    },
     clickhandler () {
       var loginPassword = validate.trimStr(this.loginPassword)
       var loginNewPassword = validate.trimStr(this.loginNewPassword)
@@ -75,7 +83,7 @@ export default {
     }
   },
   components: {
-    wbutton
+    wbutton, bar
   },
   props: ['wbutton']
 }
