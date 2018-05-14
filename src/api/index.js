@@ -2,7 +2,7 @@ let root = ''
 const pro = process.env.NODE_ENV === 'production'
 const mock = process.env.MOCK
 if (pro) {
-  root = '/api'
+  root = 'http://www.doutu66.com'
 } else {
   // root = '/testapi'
   root = '/devapi'

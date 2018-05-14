@@ -47,7 +47,6 @@
         this.$router.push({path: '/article', query: {id}})
       },
       searchEvent (obj) {
-        debugger
         this.$router.push({path: '/search', query: {type: obj.type, key: obj.key}})
       }
     }
