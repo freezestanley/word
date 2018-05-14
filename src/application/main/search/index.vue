@@ -47,7 +47,6 @@
       searchEvent (obj) {
         this.axios.get(`http://www.doutu66.com/scdc/content/search?keyword=${obj.key}&queryType=${obj.type}`).then(response => {
           if (response.data.status) {
-            debugger
             this.list = response.data.data
           } else {
             this.$toast.show({'text': `${response.data.errorMsg}`})
