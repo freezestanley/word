@@ -163,14 +163,15 @@ export default {
     margin: rem-calc(0 10);
     height: rem-calc(80);
     .banner{
-      width: 150px;
+      width: 120px;
+      height: 120px;
       float: right;
       display: block;
       overflow: hidden;
       max-height: rem-calc(80);
     }
     & table {
-      width:180px;
+      width:220px;
       overflow: hidden;
       td{
         line-height: rem-calc(20);
