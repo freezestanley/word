@@ -168,7 +168,7 @@ export default {
       float: right;
       display: block;
       overflow: hidden;
-      max-height: rem-calc(80);
+      max-height: rem-calc(120);
     }
     & table {
       width:220px;
