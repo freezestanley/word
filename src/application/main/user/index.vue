@@ -2,7 +2,7 @@
   <section class="user_center">
     <bar>
       <span slot="left" @click="goback">返回</span>
-      <span>我的</span>
+      <span>用户中心</span>
     </bar>
     <div class="banner">
       <div class="banner_title">S C D C<br/>毒物数据库</div>

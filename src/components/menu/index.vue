@@ -1,7 +1,7 @@
 <template>
   <div class="menu">
     <div @click="gohome">首页</div>
-    <div @click="gouser">我的</div>
+    <div @click="gouser">用户中心</div>
   </div>
 </template>
 <script>
@@ -33,6 +33,7 @@ export default {
     height: rem-calc(40);
     overflow: hidden;
     color:#fff;
+    max-width: 50%;
   }
 }
 </style>

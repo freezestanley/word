@@ -18,6 +18,9 @@
         <tr>
           <td>名称:</td><td>{{titleCn}}</td>
         </tr>
+        <tr>
+          <td>英文名:</td><td>{{titleEn}}</td>
+        </tr>
       </table>
     </div>
     <ul>
