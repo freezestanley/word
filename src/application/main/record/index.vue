@@ -28,7 +28,7 @@ export default {
   data () {
     return {
       list: [],
-      banner: '/static/img/banner.png'
+      banner: '/static/img/ban.png'
     }
   },
   created: function () {
@@ -51,7 +51,7 @@ export default {
     getBanner () {
       this.axios.post(IBANNER).then(response => {
         if (response.data.status) {
-          this.banner = response.data.data[0].base64Pict
+          this.banner = response.data.data.length > 0 ? response.data.data[0].base64Pict : '/static/img/ban.png'
         }
       }).catch(err => {
         throw new Error(err)

@@ -5,8 +5,8 @@
       <span>用户中心</span>
     </bar>
     <div class="banner">
-      <div class="banner_title">S C D C<br/>毒物数据库</div>
-      <div class="banner_info">User Center</div>
+      <!-- <div class="banner_title">S C D C<br/>毒物数据库</div>
+      <div class="banner_info">User Center</div> -->
     </div>
     <div class="line_block">
       <div class="line_title">用 户 名</div>
@@ -83,7 +83,8 @@ export default {
   .banner{
     width: 100%;
     height: rem-calc(188);
-    background-image: url(~@/assets/image/banner1.png);
+    // background-image: url(~@/assets/image/banneruser.png);
+    background-image: url(~@/assets/image/bannerbox.png);
     background-size: cover;
     position: relative;
     .banner_title{
