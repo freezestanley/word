@@ -6,6 +6,7 @@
       :wordCn = "team.contentCn" 
       :wordEn = "team.contentEn" 
       :title = "team.titleCn"
+      :flag = "team.flag"
       :id = "'a' + team.id">
       </partce>
     </div>

@@ -7,7 +7,7 @@
     <p v-show="status">
       {{wordEn}}
     </p>
-    <div class="toggleButton"  @click="toggleHandle">
+    <div v-if="flag" class="toggleButton"  @click="toggleHandle">
       <div>查看原文</div>
     </div>
   </div>
@@ -32,6 +32,10 @@ export default {
     },
     id: {
       type: String | Number
+    },
+    flag: {
+      type: Boolean,
+      default: true
     }
   },
   methods: {
