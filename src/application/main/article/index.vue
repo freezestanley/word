@@ -70,9 +70,6 @@ export default {
       titleEn: null,
       discussTxt: '',
       message: [
-        {title: '123123', des: 'asdfasdf'},
-        {title: '123123', des: 'asdfasdf'},
-        {title: '123123', des: 'asdfasdf'}
       ],
       imgurl: ''
     }
