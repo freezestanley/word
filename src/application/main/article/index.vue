@@ -7,21 +7,25 @@
     <h2 class="article_title">{{titleCn}}</h2>
     <div @click="uphandler" class="uptop"></div>
     <div class="article_code">
-      <img :src="imgurl" class="banner">
-      <table>
-        <tr>
-          <td>CAS:</td><td>{{cas}}</td>
-        </tr>
-        <!-- <tr>
-          <td>name:</td><td>{{titleEn}}</td>
-        </tr> -->
-        <tr>
-          <td>名称:</td><td>{{titleCn}}</td>
-        </tr>
-        <tr>
-          <td>英文名:</td><td>{{titleEn}}</td>
-        </tr>
-      </table>
+      <table >
+        <tbody>
+          <tr data-v-3e25db58="">
+            <td data-v-3e25db58="">CAS:</td>
+            <td data-v-3e25db58="">{{cas}}</td> 
+            <td data-v-3e25db58="" rowspan="3">
+              <img :src="imgurl" class="banner">
+            </td>
+          </tr> 
+          <tr data-v-3e25db58="">
+            <td data-v-3e25db58="">名称:</td>
+            <td data-v-3e25db58="">{{titleCn}}</td>
+          </tr> 
+          <tr data-v-3e25db58="">
+            <td data-v-3e25db58="">英文名:</td>
+            <td data-v-3e25db58="">{{titleEn}}</td>
+          </tr>
+          </tbody>
+        </table>
     </div>
     <ul>
       <li v-for="(team, idx) of list" :key="idx">
@@ -164,29 +168,29 @@ export default {
   }
   .article_code{
     margin: rem-calc(0 10);
-    height: rem-calc(80);
     .banner{
-      width: 120px;
-      height: 120px;
-      float: right;
-      display: block;
+      width: 100px;
+      height: 100px;
       overflow: hidden;
-      max-height: rem-calc(120);
     }
-    & table {
-      width:220px;
+    & > table {
+      width:100%;
       overflow: hidden;
-      td{
-        line-height: rem-calc(20);
+      tr > td{
+        vertical-align: top;
+        word-break:break-all; 
+        word-wrap:break-word;
       }
-      & > tr > td:first-child{
-        text-align: right;
-        vertical-align: text-top;
+      tr > td:nth-child(2){
+        padding:0 3px;
       }
-      & > tr > td:last-child{
-        text-align: left;
-        padding-left: rem-calc(10);
-        vertical-align: text-top;
+      tr > td:first-child{
+        width: 32px;
+      }
+      tr > td:last-child{
+        width: 100px;
+        overflow: hidden;
+        
       }
     }
   }
