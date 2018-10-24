@@ -1,7 +1,7 @@
 <template>
   <section class="article" id="article">
     <bar>
-      <span slot="left" @click="goback">返回</span>
+      <span slot="left" @click="goback">返回</span> 
       <span>{{titleCn}}</span>
     </bar>
     <h2 class="article_title">{{titleCn}}</h2>
