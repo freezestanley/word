@@ -16,10 +16,10 @@
               <img :src="imgurl" class="banner">
             </td>
           </tr> 
-          <tr data-v-3e25db58="">
+          <!-- <tr data-v-3e25db58="">
             <td data-v-3e25db58="">名称:</td>
             <td data-v-3e25db58="">{{titleCn}}</td>
-          </tr> 
+          </tr>  -->
           <tr data-v-3e25db58="">
             <td data-v-3e25db58="">英文名:</td>
             <td data-v-3e25db58="">{{titleEn}}</td>
@@ -79,7 +79,7 @@ export default {
   },
   methods: {
     goback () {
-      this.$router.push({path: '/list'})
+      this.$router.go(-1)
     },
     getData () {
       // this.axios.post('http://192.168.26.80:3000/home').then(res => {
