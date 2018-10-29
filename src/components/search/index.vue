@@ -56,6 +56,8 @@ export default {
     searchHandler () {
       // this.$router.push({path: '/search', query: {type: this.relative, key: this.searchModel}})
       this.$emit('SearchEvent', {type: this.relative, key: this.searchModel})
+      // debugger
+      // this.$router.push({path: '/search', query: {type: 'OR', key: '123asd'}})
     }
   }
 }
