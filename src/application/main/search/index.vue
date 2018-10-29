@@ -45,7 +45,9 @@
         this.$router.push({path: '/article', query: {id}})
       },
       searchEvent (obj) {
-        this.$router.push({path: '/search', query: {type: obj.type, key: obj.key}})
+        this.$router.push({path: '/search', query: {type: obj.type, key: obj.key}}, () => {
+          this.getData()
+        })
 
         // this.axios.get(`http://www.doutu66.com/scdc/content/search?keyword=${obj.key}&queryType=${obj.type}`).then(response => {
         //   if (response.data.status) {
