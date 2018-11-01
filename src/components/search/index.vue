@@ -3,7 +3,7 @@
     <div class="search-sel">
       <selector v-model="select" placeholder="或" :options="list"></selector>
     </div>
-    <input type="text" placeholder="请输入" v-model="searchModel" class="search-input" maxlength="200" @focus="show()" @blur="hide()">
+    <input type="text" placeholder="请输入" v-model.trim="searchModel" class="search-input" maxlength="200" @focus="show()" @blur="hide()">
     <a class="search-btn" @click="searchHandler">搜索</a>
     <ul class="searched-text" v-show="showSearched" @click="clickText">
       <li v-for="(item, index) of record" :key="index">
@@ -51,7 +51,7 @@ export default {
       let $event = event.target
       this.searchModel = $event.innerHTML
       this.showSearched = false
-      this.relative = this.searchModel == '与' ? 'AND' : 'OR'
+      this.relative = this.select === '与' ? 'AND' : 'OR'
     },
     searchHandler () {
       // this.$router.push({path: '/search', query: {type: this.relative, key: this.searchModel}})
