@@ -1,11 +1,14 @@
 let root = ''
 const pro = process.env.NODE_ENV === 'production'
-const mock = process.env.MOCK
+// const mock = process.env.MOCK
+const mock = 'cross'
 if (pro) {
-  root = 'http://www.doutu66.com'
+  root = 'http://www.scdctech.sh.cn'
 } else {
   // root = '/testapi'
-  root = '/devapi'
+  // root = '/devapi'
+  // root = '/'
+  root = 'http://www.scdctech.sh.cn'
 }
 let path = (inf = null, n) => {
   let result = ''
@@ -19,7 +22,8 @@ let path = (inf = null, n) => {
       break
     case 'cross':
       console.warn('远程mock数据模式')
-      result = root + '/cross' + inf
+      // result = root + '/cross' + inf
+      result = root + inf
       break
     case 'mixin':
       if (n) {
@@ -62,3 +66,5 @@ export const IWRITEMESSAGE = path('/scdc/content/list') // 毒物列表
 export const IADDISCUSS = path('/scdc/comment/add')
 export const ISEARCH = path('/scdc/content/search')
 export const ISEARCHLOG = path('/scdc/user/searchlog')
+export const IARTICLEDETAIL = path('/scdc/content/detail')
+export const IARTICLEDLIST = path('/scdc/comment/list')

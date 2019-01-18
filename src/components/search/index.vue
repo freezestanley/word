@@ -1,10 +1,11 @@
 <template>
   <div class="search-box">
     <div class="search-sel">
-      <selector v-model="select" placeholder="或" :options="list"></selector>
+      <!-- <selector v-model="select" placeholder="或" :options="list"></selector> -->
+      {{title}}
     </div>
     <input type="text" placeholder="请输入" v-model.trim="searchModel" class="search-input" maxlength="200" @focus="show()" @blur="hide()">
-    <a class="search-btn" @click="searchHandler">搜索</a>
+    <a class="search-btn" @click="searchHandler"></a>
     <ul class="searched-text" v-show="showSearched" @click="clickText">
       <li v-for="(item, index) of record" :key="index">
         {{item.keyword}}
@@ -31,6 +32,7 @@ export default {
       relative: 'AND'
     }
   },
+  props: ["title"],
   methods: {
     show: function () {
       this.showSearched = true
@@ -68,8 +70,6 @@ export default {
   position: relative;
   display: flex;
   padding: rem-calc(1 0 1 15);
-  background: #56CDF9;
-  color: #fff;
   align-items: center;
   z-index: 99;
   .search-sel {
@@ -83,7 +83,7 @@ export default {
     line-height: rem-calc(40);
     box-sizing: border-box;
     border-radius: rem-calc(5);
-    border: 0;
+    border: rem-calc(1) solid #ccc;
     font-size: rem-calc(16);
   }
   .search-btn {
@@ -91,7 +91,16 @@ export default {
     display: block;
     text-align: center;
     font-size: rem-calc(18);
-    color: #fff;
+    color: #000;
+    &:before{
+      background: url("~@/assets/image/eye.png") no-repeat;
+      background-size: 100%;
+      display: block;
+      content: " ";
+      width: rem-calc(30);
+      height: rem-calc(30);
+      margin-left: rem-calc(10);
+    }
   }
   .searched-text {
     position: absolute;

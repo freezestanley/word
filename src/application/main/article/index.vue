@@ -49,7 +49,7 @@
   </section> 
 </template>
 <script>
-import { IARTICLE, IWRITEMESSAGE, IADDISCUSS, ISEARCH } from '@/api'
+import { IARTICLE, IWRITEMESSAGE, IADDISCUSS, ISEARCH, IARTICLEDETAIL, IARTICLEDLIST } from '@/api'
 import anchor from '@/components/anchor'
 import part from '@/components/part'
 import bar from '@/components/bar'
@@ -89,7 +89,7 @@ export default {
       //   throw new Error(err)
       // })
       // console.log(IARTICLE) // 'http://www.doutu66.com/scdc/content/detail?id=1
-      this.axios.get(`http://www.doutu66.com/scdc/content/detail?posionId=${this.$route.query.id}`).then(response => {
+      this.axios.get(`${IARTICLEDETAIL}?posionId=${this.$route.query.id}`).then(response => {
         if (response.data.status) {
           this.list = response.data.data.list
           this.cas = response.data.data.cas
@@ -102,7 +102,7 @@ export default {
       }).catch(err => {
         throw new Error(err)
       })
-      this.axios.get(`http://www.doutu66.com/scdc/comment/list?posionId=${this.$route.query.id}`, {posionId: this.$route.query.id}).then(response => {
+      this.axios.get(`${IARTICLEDLIST}?posionId=${this.$route.query.id}`, {posionId: this.$route.query.id}).then(response => {
         if (response.data.status) {
           this.message = response.data.data
         } else {

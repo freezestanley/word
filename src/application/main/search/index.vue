@@ -4,7 +4,7 @@
     <div class="content_scroll">
       <ul class="list">
         <li v-for="(item, index) of list" :key="index" @click="goarticle(item.id)">
-          <p>CAS号: {{item.casNo}}</p>
+          <p>{{item.casNo}}</p>
           <p>{{item.title}}</p>
         </li>
       </ul>
@@ -16,6 +16,7 @@
 <script>
   import search from '@/components/search'
   import menubar from '@/components/menu'
+  import { ISEARCH } from '@/api'
   export default {
     name: 'searchresult',
     components: {
@@ -31,7 +32,7 @@
     },
     methods: {
       getData: function () {
-        this.axios.get(`http://www.doutu66.com/scdc/content/search?keyword=${this.$route.query.key}&queryType=${this.$route.query.type}`).then(response => {
+        this.axios.get(`${ISEARCH}?keyword=${this.$route.query.key}&queryType=${this.$route.query.type}`).then(response => {
           if (response.data.status) {
             this.list = response.data.data
           } else {
@@ -45,6 +46,7 @@
         this.$router.push({path: '/article', query: {id}})
       },
       searchEvent (obj) {
+        debugger
         this.$router.push({path: '/search', query: {type: obj.type, key: obj.key}}, () => {
           this.getData()
         })

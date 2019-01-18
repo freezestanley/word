@@ -25,7 +25,7 @@ export default {
 .menu{
   width: 100%;
   display: table;
-  background:#56CDF9;
+  background:#005eaa;
   & > div{
     display: table-cell;
     text-align: center;

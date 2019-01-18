@@ -1,12 +1,22 @@
 <template>
   <div class="index content">
+    <div class="title">毒物数据库</div>
+    <!-- 毒物数据库 -->
+    <!-- <img :src="banner" class="banner"> -->
+    <img src="~@/assets/image/ban.png" class="banner">
     <div class="content_fix">
-      <search @SearchEvent="searchEvent"></search>
+      <search @SearchEvent="searchEvent" :title="'Cas'"></search>
+      <search @SearchEvent="searchEvent" :title="'名称'"></search>
+      <search @SearchEvent="searchEvent" :title="'全文'"></search>
     </div>
-    <img :src="banner" class="banner">
+    
+    <div>
+      
+    </div>
     <div class="content_scroll">
-      <ul class="list">
+      <ul class="newlist">
         <li v-for="(item, index) of list" :key="index" @click="clickHandler(item.categoryEn)">
+          <!-- <img src="~@/assets/image/huaxue1.jpg" style="width: 100%;"/> -->
           <p>{{item.category}}</p>
           <p>{{item.categoryDesc}}</p>
         </li>
@@ -72,6 +82,20 @@ export default {
     overflow: hidden;
     width:100%;
     height:100%;
+    .content_fix{
+      background:#f1f1f1;
+      padding: rem-calc(5 0);
+      border-bottom: rem-calc(5) solid #005eaa;
+    }
+    .title{
+      background: #005eaa;
+      text-align: center;
+      height: rem-calc(50);
+      line-height: rem-calc(50);
+      vertical-align: middle;
+      font-size: rem-calc(30);
+      color: #fff;
+    }
     .content_scroll{
       flex:1;
       overflow-y: auto;
@@ -82,6 +106,72 @@ export default {
     width: 100%;
     height: rem-calc(192);
     overflow: hidden;
+  }
+  & .newlist{
+    margin: rem-calc(0 15);
+    & > li{
+      border-left: rem-calc(3) solid #739cd2;
+      border-radius: rem-calc(3 0 0 3);
+      padding: rem-calc(10 10 20 10);
+      background:#f1f1f1;
+      margin: 10px 0;
+      // &:before{
+      //   content: " ";
+        
+      // }
+      & > p:first-of-type{
+        background-repeat: no-repeat;
+        background-size: 100%;
+        // background-image: url('~@/assets/image/huaxue1.jpg');
+        height: rem-calc(100);
+        display:block;
+        color:#fff;
+        font-size: rem-calc(20);
+        text-indent: rem-calc(20);
+        line-height: rem-calc(100);
+        vertical-align: middle;
+        margin-bottom: rem-calc(10);
+      }
+      & > p:nth-child(2){
+        line-height: rem-calc(25px);
+      }
+      &:nth-child(1){
+        border-left: rem-calc(3) solid #27586d;
+      }
+      &:nth-child(2){
+        border-left: rem-calc(3) solid #7f6622;
+      }
+      &:nth-child(3){
+        border-left: rem-calc(3) solid #4ebaaa;
+      }
+      &:nth-child(4){
+        border-left: rem-calc(3) solid #4b830d;
+      }
+      &:nth-child(5){
+        border-left: rem-calc(3) solid #ad907b;
+      }
+      &:nth-child(6){
+        border-left: rem-calc(3) solid #af4448;
+      }
+      &:nth-child(1) > p:first-of-type{
+        background-image: url('~@/assets/image/huaxue1.jpg');
+      }
+      &:nth-child(2) > p:first-of-type{
+        background-image: url('~@/assets/image/yaowu.jpg');
+      }
+      &:nth-child(3) > p:first-of-type{
+        background-image: url('~@/assets/image/nongye.jpg');
+      }
+      &:nth-child(4) > p:first-of-type{
+        background-image: url('~@/assets/image/zhiwu.jpg');
+      }
+      &:nth-child(5) > p:first-of-type{
+        background-image: url('~@/assets/image/xijun1.jpg');
+      }
+      &:nth-child(6) > p:first-of-type{
+        background-image: url('~@/assets/image/dongwu1.jpg');
+      }
+    }
   }
   & .list {
     padding: rem-calc(0 15);
