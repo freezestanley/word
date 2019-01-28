@@ -35,6 +35,21 @@
         ></part>
       </li>
     </ul>
+
+    <div>
+      <div class="showMore" v-show="!showHidden" @click="showHidden = !showHidden">查看更多</div>
+      <ul v-show="showHidden">
+        <li v-for="(team, idx) of togglelist" :key="idx">
+          <part 
+          :title = "team.title"
+          :son = "team.son"
+          ></part>
+        </li>
+      </ul>
+    </div>
+
+
+    
     <div class="disscus">
       <div class="disscusTitle">评论</div>
       <textarea class="m_rl10" placeholder="请输入您的评论" v-model="discussTxt"></textarea>
@@ -71,11 +86,15 @@ export default {
       discussTxt: '',
       message: [
       ],
-      imgurl: ''
+      imgurl: '',
+      togglelist: [],
+      extendlist: [],
+      showHidden: false
     }
   },
   created () {
     this.getData()
+    this.getToggleData()
   },
   methods: {
     goback () {
@@ -89,13 +108,34 @@ export default {
       //   throw new Error(err)
       // })
       // console.log(IARTICLE) // 'http://www.doutu66.com/scdc/content/detail?id=1
-      this.axios.get(`${IARTICLEDETAIL}?posionId=${this.$route.query.id}`).then(response => {
+      this.axios.get(`${IARTICLEDETAIL}?posionId=${this.$route.query.id}&hidden=0`).then(response => {
         if (response.data.status) {
           this.list = response.data.data.list
+          // let togglelist, extendlist
           this.cas = response.data.data.cas
           this.titleCn = response.data.data.titleCn
           this.titleEn = response.data.data.titleEn
           this.imgurl = response.data.data.imgUrl
+        } else {
+          this.$toast.show({'text': `${response.data.errorMsg}`})
+        }
+      }).catch(err => {
+        throw new Error(err)
+      })
+      this.axios.get(`${IARTICLEDLIST}?posionId=${this.$route.query.id}`, {posionId: this.$route.query.id}).then(response => {
+        if (response.data.status) {
+          this.message = response.data.data
+        } else {
+          this.$toast.show({'text': `${response.data.errorMsg}`})
+        }
+      }).catch(err => {
+        throw new Error(err)
+      })
+    },
+    getToggleData () {
+      this.axios.get(`${IARTICLEDETAIL}?posionId=${this.$route.query.id}&hidden=1`).then(response => {
+        if (response.data.status) {
+          this.togglelist = response.data.data.list
         } else {
           this.$toast.show({'text': `${response.data.errorMsg}`})
         }
@@ -138,6 +178,11 @@ export default {
 <style lang="scss" scoped>
 .article{
   padding: rem-calc(0 0 0);
+  .showMore{
+    font-size: rem-calc(20);
+    text-align: center;
+ 
+  }
   .uptop{
     position: fixed;
     bottom: rem-calc(70);

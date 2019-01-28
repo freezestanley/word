@@ -1,6 +1,19 @@
 <template>
   <div class="list-box content">
-    <search @SearchEvent="searchEvent"></search>
+    <!-- <search @SearchEvent="searchEvent"></search> -->
+
+    <bar>
+      <span slot="left" @click="goback">返回</span>
+      <span>毒物数据库</span>
+    </bar>
+
+    <div class="content_fix">
+      <search @SearchEvent="searchEvent" :title="'Cas号'" :type="'1'" ></search>
+      <search @SearchEvent="searchEvent" :title="'毒物名称'" :type="'2'" ></search>
+      <search @SearchEvent="searchEvent" :title="'全文检索'" :type="'3'" ></search>
+    </div>
+
+
     <div class="content_scroll">
       <ul class="list">
         <li v-for="(item, index) of list" :key="index" @click="goarticle(item.id)">
@@ -32,6 +45,9 @@
       this.getData()
     },
     methods: {
+      goback () {
+        this.$router.go(-1)
+      },
       getData: function () {
         this.axios.post(ILIST, {id: this.$route.query.category}).then(response => {
           if (response.data.status) {
@@ -55,6 +71,20 @@
 
 <style lang="scss" scoped>
 .list-box {
+  .content_fix{
+      background:#f1f1f1;
+      padding: rem-calc(5 0);
+      border-bottom: rem-calc(5) solid #005eaa;
+    }
+    .title{
+      background: #005eaa;
+      text-align: center;
+      height: rem-calc(50);
+      line-height: rem-calc(50);
+      vertical-align: middle;
+      font-size: rem-calc(30);
+      color: #fff;
+    }
   &.content{
     display:flex;
     flex-direction: column;

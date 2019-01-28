@@ -5,9 +5,9 @@
     <!-- <img :src="banner" class="banner"> -->
     <img src="~@/assets/image/ban.png" class="banner">
     <div class="content_fix">
-      <search @SearchEvent="searchEvent" :title="'Cas'"></search>
-      <search @SearchEvent="searchEvent" :title="'名称'"></search>
-      <search @SearchEvent="searchEvent" :title="'全文'"></search>
+      <search @SearchEvent="searchEvent" :title="'Cas号'" :type="'1'" ></search>
+      <search @SearchEvent="searchEvent" :title="'毒物名称'" :type="'2'" ></search>
+      <search @SearchEvent="searchEvent" :title="'全文检索'" :type="'3'" ></search>
     </div>
     
     <div>
@@ -17,7 +17,7 @@
       <ul class="newlist">
         <li v-for="(item, index) of list" :key="index" @click="clickHandler(item.categoryEn)">
           <!-- <img src="~@/assets/image/huaxue1.jpg" style="width: 100%;"/> -->
-          <p>{{item.category}}</p>
+          <p :style="{backgroundImage: 'url(' + item.pictPath + ')'}">{{item.category}}</p>
           <p>{{item.categoryDesc}}</p>
         </li>
       </ul>
@@ -153,24 +153,24 @@ export default {
       &:nth-child(6){
         border-left: rem-calc(3) solid #af4448;
       }
-      &:nth-child(1) > p:first-of-type{
-        background-image: url('~@/assets/image/huaxue1.jpg');
-      }
-      &:nth-child(2) > p:first-of-type{
-        background-image: url('~@/assets/image/yaowu.jpg');
-      }
-      &:nth-child(3) > p:first-of-type{
-        background-image: url('~@/assets/image/nongye.jpg');
-      }
-      &:nth-child(4) > p:first-of-type{
-        background-image: url('~@/assets/image/zhiwu.jpg');
-      }
-      &:nth-child(5) > p:first-of-type{
-        background-image: url('~@/assets/image/xijun1.jpg');
-      }
-      &:nth-child(6) > p:first-of-type{
-        background-image: url('~@/assets/image/dongwu1.jpg');
-      }
+      // &:nth-child(1) > p:first-of-type{
+      //   background-image: url('~@/assets/image/huaxue1.jpg');
+      // }
+      // &:nth-child(2) > p:first-of-type{
+      //   background-image: url('~@/assets/image/yaowu.jpg');
+      // }
+      // &:nth-child(3) > p:first-of-type{
+      //   background-image: url('~@/assets/image/nongye.jpg');
+      // }
+      // &:nth-child(4) > p:first-of-type{
+      //   background-image: url('~@/assets/image/zhiwu.jpg');
+      // }
+      // &:nth-child(5) > p:first-of-type{
+      //   background-image: url('~@/assets/image/xijun1.jpg');
+      // }
+      // &:nth-child(6) > p:first-of-type{
+      //   background-image: url('~@/assets/image/dongwu1.jpg');
+      // }
     }
   }
   & .list {

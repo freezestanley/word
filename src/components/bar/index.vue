@@ -28,7 +28,7 @@
     height: rem-calc(45);
     line-height: rem-calc(45);
     vertical-align: middle;
-    background: #56CDF9;
+    background: #005eaa;
     color:#fff;
     &:first-child{
       flex:1;

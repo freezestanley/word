@@ -1,6 +1,19 @@
 <template>
   <div class="list-box content">
-    <search @SearchEvent="searchEvent"></search>
+    <!-- <div class="title">毒物数据库</div> -->
+    <!-- <search @SearchEvent="searchEvent"></search> -->
+    <bar>
+      <span slot="left" @click="goback">返回</span>
+      <span>毒物数据库</span>
+    </bar>
+    <div class="content_fix">
+      <search @SearchEvent="searchEvent" :title="'Cas号'" :type="'1'" ></search>
+      <search @SearchEvent="searchEvent" :title="'毒物名称'" :type="'2'" ></search>
+      <search @SearchEvent="searchEvent" :title="'全文检索'" :type="'3'" ></search>
+    </div>
+
+
+
     <div class="content_scroll">
       <ul class="list">
         <li v-for="(item, index) of list" :key="index" @click="goarticle(item.id)">
@@ -17,10 +30,11 @@
   import search from '@/components/search'
   import menubar from '@/components/menu'
   import { ISEARCH } from '@/api'
+  import bar from '@/components/bar'
   export default {
     name: 'searchresult',
     components: {
-      search, menubar
+      search, menubar, bar
     },
     data () {
       return {
@@ -31,6 +45,9 @@
       this.getData()
     },
     methods: {
+      goback () {
+        this.$router.go(-1)
+      },
       getData: function () {
         this.axios.get(`${ISEARCH}?keyword=${this.$route.query.key}&queryType=${this.$route.query.type}`).then(response => {
           if (response.data.status) {
@@ -46,7 +63,6 @@
         this.$router.push({path: '/article', query: {id}})
       },
       searchEvent (obj) {
-        debugger
         this.$router.push({path: '/search', query: {type: obj.type, key: obj.key}}, () => {
           this.getData()
         })
@@ -67,6 +83,20 @@
 
 <style lang="scss" scoped>
 .list-box {
+  .title{
+      background: #005eaa;
+      text-align: center;
+      height: rem-calc(50);
+      line-height: rem-calc(50);
+      vertical-align: middle;
+      font-size: rem-calc(30);
+      color: #fff;
+    }
+  .content_fix{
+    border-bottom:  1px solid #dfdfdf;
+    background: #efefef;
+    padding-bottom: rem-calc(10);
+  }
   &.content{
     display:flex;
     flex-direction: column;

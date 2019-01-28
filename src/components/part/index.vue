@@ -1,15 +1,16 @@
 <template>
   <div class="part">
     <h3>{{title}}</h3>
-    <div v-for="(team, idx) of son" :key="idx" class="part_txt">
-      <partce 
-      :wordCn = "team.contentCn" 
-      :wordEn = "team.contentEn" 
-      :title = "team.titleCn"
-      :flag = "team.flag"
-      :id = "'a' + team.id">
-      </partce>
-    </div>
+   
+      <div v-for="(team, idx) of son" :key="idx" class="part_txt">
+        <partce 
+        :wordCn = "team.contentCn" 
+        :wordEn = "team.contentEn" 
+        :title = "team.titleCn"
+        :flag = "team.flag"
+        :id = "'a' + team.id">
+        </partce>
+      </div>
   </div>
 </template>
 <script>
@@ -64,6 +65,9 @@ export default {
   h3 {
     font-size: rem-calc(16);
     margin-bottom: rem-calc(8);
+    background:#eee;
+    padding: rem-calc(10);
+    border-radius: 3px;
   }
   h4 {
     font-size: rem-calc(14);

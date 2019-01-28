@@ -1,10 +1,10 @@
 <template>
   <div class="partce">
     <h4 :id="id">{{title}}</h4>
-    <p>
+    <p style="line-height: 22px;">
       {{wordCn}}
     </p>
-    <p v-show="status">
+    <p v-show="status" style="background:#eee;padding:5px; line-height: 22px;border-radius:10px;">
       {{wordEn}}
     </p>
     <div v-if="flag" class="toggleButton"  @click="toggleHandle">
@@ -55,12 +55,12 @@ export default {
     text-align: right;
     div {
       border-radius: rem-calc(100);
-      background: #4A90E2;
-      color:#fff;
+      color:#000;
       padding:rem-calc(5 10);
       display: block;
-     float:right;
-      font-size:rem-calc(10);
+      text-align: center;
+      font-size:rem-calc(15);
+      text-align: right;
     }
   }
   p{line-height: rem-calc(20);}

@@ -32,7 +32,7 @@ export default {
       relative: 'AND'
     }
   },
-  props: ["title"],
+  props: ["title", "type"],
   methods: {
     show: function () {
       this.showSearched = true
@@ -50,14 +50,15 @@ export default {
       this.showSearched = false
     },
     clickText: function (event) {
+      debugger
       let $event = event.target
-      this.searchModel = $event.innerHTML
+      this.searchModel = ($event.innerHTML).replace(/\s+/g, "")
       this.showSearched = false
       this.relative = this.select === '与' ? 'AND' : 'OR'
     },
     searchHandler () {
       // this.$router.push({path: '/search', query: {type: this.relative, key: this.searchModel}})
-      this.$emit('SearchEvent', {type: this.relative, key: this.searchModel})
+      this.$emit('SearchEvent', {type: this.type, key: this.searchModel})
       // debugger
       // this.$router.push({path: '/search', query: {type: 'OR', key: '123asd'}})
     }
@@ -71,20 +72,21 @@ export default {
   display: flex;
   padding: rem-calc(1 0 1 15);
   align-items: center;
-  z-index: 99;
+  
   .search-sel {
     position: relative;
-    width: rem-calc(50);
-    font-size: rem-calc(18);
+    width: rem-calc(65);
+    font-size: rem-calc(14);
   }
   .search-input {
     padding: rem-calc(0 10);
-    width: rem-calc(255);
+    width: rem-calc(240);
     line-height: rem-calc(40);
     box-sizing: border-box;
     border-radius: rem-calc(5);
     border: rem-calc(1) solid #ccc;
     font-size: rem-calc(16);
+   
   }
   .search-btn {
     flex: 1;
@@ -110,6 +112,7 @@ export default {
     background: #fff;
     border: 1px solid #efefef;
     border-radius: rem-calc(5);
+    z-index: 9999999;
     li {
       padding: 10px 15px;
       list-style: none;
