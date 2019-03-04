@@ -7,6 +7,7 @@
     <p v-show="status" style="background:#eee;padding:5px; line-height: 22px;border-radius:10px;">
       {{wordEn}}
     </p>
+    <div v-if="imgurl"><img :src="imgurl" class="banner"></div>
     <div v-if="flag" class="toggleButton"  @click="toggleHandle">
       <div>查看原文</div>
     </div>
@@ -23,6 +24,9 @@ export default {
   props: {
     title: {
       default: ''
+    },
+    imgurl: {
+      type: String
     },
     wordCn: {
       type: String

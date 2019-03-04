@@ -35,7 +35,8 @@
       padding-left: rem-calc(10);
     }
     &:nth-child(2){
-      flex:1;
+      // flex:1;
+      min-width: 240px;
       text-align: center;
     }
     &:last-child{

@@ -8,6 +8,7 @@
         :wordEn = "team.contentEn" 
         :title = "team.titleCn"
         :flag = "team.flag"
+        :image = "team.imgUrl"
         :id = "'a' + team.id">
         </partce>
       </div>

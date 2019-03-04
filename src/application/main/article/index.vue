@@ -6,7 +6,8 @@
     </bar>
     <h2 class="article_title">{{titleCn}}</h2>
     <div @click="uphandler" class="uptop"></div>
-    <div class="article_code">
+    <div class="logobox"><img src="~@/assets/image/logo1.png" class="logo"></div>
+    <!-- <div class="article_code">
       <table >
         <tbody>
           <tr data-v-3e25db58="">
@@ -15,18 +16,18 @@
             <td data-v-3e25db58="" rowspan="3">
               <img :src="imgurl" class="banner">
             </td>
-          </tr> 
+          </tr>  -->
           <!-- <tr data-v-3e25db58="">
             <td data-v-3e25db58="">名称:</td>
             <td data-v-3e25db58="">{{titleCn}}</td>
           </tr>  -->
-          <tr data-v-3e25db58="">
+          <!-- <tr data-v-3e25db58="">
             <td data-v-3e25db58="">英文名:</td>
             <td data-v-3e25db58="">{{titleEn}}</td>
           </tr>
           </tbody>
         </table>
-    </div>
+    </div> -->
     <ul>
       <li v-for="(team, idx) of list" :key="idx">
         <part 
@@ -178,6 +179,19 @@ export default {
 <style lang="scss" scoped>
 .article{
   padding: rem-calc(0 0 0);
+  .logobox{
+    .logo{
+    width: rem-calc(80);
+    margin: rem-calc(20) rem-calc(20) 0 0; 
+    float: right;
+    }
+    &:after{
+      content: ' ';
+      clear:both;
+      display: block;
+    }
+  }
+  
   .showMore{
     font-size: rem-calc(20);
     text-align: center;
@@ -204,9 +218,11 @@ export default {
     }
   }
   .article_title{
-    font-size: rem-calc(18);
-    text-align: center;
-    padding: rem-calc(15 0)
+    font-size: rem-calc(15);
+    padding: rem-calc(15 0);
+    text-indent: rem-calc(10);
+    background:#efefef;
+    box-shadow: 0 0 5px 0 #ccc;
   }
   .article_code{
     margin: rem-calc(0 10);
