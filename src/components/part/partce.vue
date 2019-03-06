@@ -1,12 +1,14 @@
 <template>
   <div class="partce">
-    <h4 :id="id">{{title}}</h4>
-    <p style="line-height: 22px;" v-html="wordCn">
+
+    <h4  :id="id">{{title}}</h4>
+
+    <a :herf = "link" style="line-height: 22px;" v-html="wordCn">
       <!-- {{wordCn}} -->
-    </p>
-    <p v-show="status" style="background:#eee;padding:5px; line-height: 22px;border-radius:10px;" v-html="wordEn">
+    </a>
+    <a  :herf = "link" v-show="status" style="background:#eee;padding:5px; line-height: 22px;border-radius:10px;" v-html="wordEn">
       <!-- {{wordEn}} -->
-    </p>
+    </a>
     <div v-if="imgurl"><img :src="imgurl" class="banner"></div>
     <div v-if="flag" class="toggleButton"  @click="toggleHandle">
       <div>查看原文</div>
@@ -22,6 +24,9 @@ export default {
     }
   },
   props: {
+    link: {
+      type: String
+    },
     title: {
       default: ''
     },
@@ -55,6 +60,10 @@ export default {
   font-size: rem-calc(14);
   padding-bottom: rem-calc(5);
   color:#333;
+  a:link{
+    text-decoration: underline;
+    color:#005eaa;
+  }
   .toggleButton{
     text-align: right;
     div {

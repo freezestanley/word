@@ -37,8 +37,9 @@
       </li>
     </ul>
 
-    <div>
+    <div v-show="showMore === '1'">
       <div class="showMore" v-show="!showHidden" @click="showHidden = !showHidden">查看更多</div>
+
       <ul v-show="showHidden">
         <li v-for="(team, idx) of togglelist" :key="idx">
           <part 
@@ -90,7 +91,8 @@ export default {
       imgurl: '',
       togglelist: [],
       extendlist: [],
-      showHidden: false
+      showHidden: false,
+      showMore: null
     }
   },
   created () {
@@ -117,6 +119,7 @@ export default {
           this.titleCn = response.data.data.titleCn
           this.titleEn = response.data.data.titleEn
           this.imgurl = response.data.data.imgUrl
+          this.showMore = response.data.data.showMore
         } else {
           this.$toast.show({'text': `${response.data.errorMsg}`})
         }

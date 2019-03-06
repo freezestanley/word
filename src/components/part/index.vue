@@ -9,6 +9,7 @@
         :title = "team.titleCn"
         :flag = "team.flag"
         :image = "team.imgUrl"
+        :link = "team.linkUrl"
         :id = "'a' + team.id">
         </partce>
       </div>
