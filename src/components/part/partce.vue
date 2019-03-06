@@ -1,11 +1,11 @@
 <template>
   <div class="partce">
     <h4 :id="id">{{title}}</h4>
-    <p style="line-height: 22px;">
-      {{wordCn}}
+    <p style="line-height: 22px;" v-html="wordCn">
+      <!-- {{wordCn}} -->
     </p>
-    <p v-show="status" style="background:#eee;padding:5px; line-height: 22px;border-radius:10px;">
-      {{wordEn}}
+    <p v-show="status" style="background:#eee;padding:5px; line-height: 22px;border-radius:10px;" v-html="wordEn">
+      <!-- {{wordEn}} -->
     </p>
     <div v-if="imgurl"><img :src="imgurl" class="banner"></div>
     <div v-if="flag" class="toggleButton"  @click="toggleHandle">
