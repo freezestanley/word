@@ -99,6 +99,12 @@ export default {
     this.getData()
     this.getToggleData()
   },
+  watch: {
+    $route (to, from) {
+      this.getData()
+      this.getToggleData()
+    }
+  },
   methods: {
     goback () {
       this.$router.go(-1)

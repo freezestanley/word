@@ -2,11 +2,10 @@
   <div class="partce">
 
     <h4  :id="id">{{title}}</h4>
-
-    <a :herf = "link" style="line-height: 22px;" v-html="wordCn">
+    <a @click="jump" style="line-height: 22px;" v-html="wordCn">
       <!-- {{wordCn}} -->
     </a>
-    <a  :herf = "link" v-show="status" style="background:#eee;padding:5px; line-height: 22px;border-radius:10px;" v-html="wordEn">
+    <a @click="jump" v-show="status" style="background:#eee;padding:5px; line-height: 22px;border-radius:10px;" v-html="wordEn">
       <!-- {{wordEn}} -->
     </a>
     <div v-if="imgurl"><img :src="imgurl" class="banner"></div>
@@ -50,6 +49,9 @@ export default {
   methods: {
     toggleHandle () {
       this.status = !this.status
+    },
+    jump (id) {
+      this.$router.push({path: '/article', query: {id: this.link.split('=')[1]}})
     }
   }
 }
