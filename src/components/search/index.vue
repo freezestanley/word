@@ -1,7 +1,7 @@
 <template>
   <div class="search-box">
     <div class="search-sel">
-      <!-- <selector v-model="select" placeholder="或" :options="list"></selector> -->
+      <selector class="searchOr" v-model="select" placeholder="或" :options="list"></selector>
       {{title}}
     </div>
     <input type="text" placeholder="请输入" v-model.trim="searchModel" class="search-input" maxlength="200" @focus="show()" @blur="hide()">
@@ -50,15 +50,16 @@ export default {
       this.showSearched = false
     },
     clickText: function (event) {
-      debugger
       let $event = event.target
       this.searchModel = ($event.innerHTML).replace(/\s+/g, "")
       this.showSearched = false
       this.relative = this.select === '与' ? 'AND' : 'OR'
     },
     searchHandler () {
+      debugger
+      console.log('ffff')
       // this.$router.push({path: '/search', query: {type: this.relative, key: this.searchModel}})
-      this.$emit('SearchEvent', {type: this.type, key: this.searchModel})
+      this.$emit('SearchEvent', {type: this.type, key: this.searchModel, relative: this.select === '与' ? 'AND' : 'OR'})
       // debugger
       // this.$router.push({path: '/search', query: {type: 'OR', key: '123asd'}})
     }
@@ -72,15 +73,20 @@ export default {
   display: flex;
   padding: rem-calc(1 0 1 15);
   align-items: center;
+
+  & > .searchOr .weui-cell_select .weui-select {
+    padding: 0;
+    color: #000;
+  }
   
   .search-sel {
     position: relative;
-    width: rem-calc(65);
+    width: rem-calc(100);
     font-size: rem-calc(14);
   }
   .search-input {
     padding: rem-calc(0 10);
-    width: rem-calc(240);
+    width: rem-calc(190);
     line-height: rem-calc(40);
     box-sizing: border-box;
     border-radius: rem-calc(5);
@@ -127,19 +133,26 @@ export default {
 </style>
 <style lang="scss">
 .search-box {
+  .weui-cell_select{
+    width: rem-calc(30);
+  }
+  .weui-cell{
+    display: inline-block;
+  }
   .weui-cell_select .weui-select {
     padding: 0;
-    color: #fff;
+    color: #000;
+    width: rem-calc(30);
     option {
       color: #333;
     }
   }
   .weui-cell_select .weui-cell__bd:after {
-    right: rem-calc(10);
-    margin-top: rem-calc(-10);
-    width: rem-calc(10);
-    height: rem-calc(10);
-    border-color: #fff;
+    right: rem-calc(5);
+    margin-top: rem-calc(-5);
+    width: rem-calc(5);
+    height: rem-calc(5);
+    border-color: #000;
     transform: rotate(135deg);
   }
 }

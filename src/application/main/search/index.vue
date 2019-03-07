@@ -49,7 +49,7 @@
         this.$router.go(-1)
       },
       getData: function () {
-        this.axios.get(`${ISEARCH}?keyword=${this.$route.query.key}&queryType=${this.$route.query.type}`).then(response => {
+        this.axios.get(`${ISEARCH}?keyword=${this.$route.query.key}&queryType=${this.$route.query.type}&relative=${this.$route.query.relative}`).then(response => {
           if (response.data.status) {
             this.list = response.data.data
           } else {
@@ -63,7 +63,7 @@
         this.$router.push({path: '/article', query: {id}})
       },
       searchEvent (obj) {
-        this.$router.push({path: '/search', query: {type: obj.type, key: obj.key}}, () => {
+        this.$router.push({path: '/search', query: {type: obj.type, key: obj.key, relative: obj.relative}}, () => {
           this.getData()
         })
 

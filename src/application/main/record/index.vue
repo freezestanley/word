@@ -68,7 +68,7 @@ export default {
       })
     },
     searchEvent (obj) {
-      this.$router.push({path: '/search', query: {type: obj.type, key: obj.key}})
+      this.$router.push({path: '/search', query: {type: obj.type, key: obj.key, relative: obj.relative}})
     }
   }
 }
