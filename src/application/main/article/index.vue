@@ -6,7 +6,10 @@
     </bar>
     <h2 class="article_title">{{titleCn}}</h2>
     <div @click="uphandler" class="uptop"></div>
-    <div class="logobox"><img src="~@/assets/image/logo1.png" class="logo"></div>
+    <div class="logobox">
+      <img src="~@/assets/image/logo1.png" class="logo">
+      <img :src="imgurl" class="tu">
+    </div>
     <!-- <div class="article_code">
       <table >
         <tbody>
@@ -198,6 +201,11 @@ export default {
       content: ' ';
       clear:both;
       display: block;
+    }
+    .tu{
+      display: block;
+      width: 150px;
+      margin: 10px;
     }
   }
   
